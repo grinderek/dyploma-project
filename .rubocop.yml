@@ -1,0 +1,276 @@
+require: rubocop-performance
+AllCops:
+  Exclude:
+    - db/schema.rb
+    - vendor/**/*
+    - bin/**/*
+    - lib/templates/**/*
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+Layout/BeginEndAlignment:
+  Enabled: true
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+Layout/FirstArgumentIndentation:
+  EnforcedStyle: consistent
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+Layout/FirstArrayElementLineBreak:
+  Enabled: true
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+Layout/FirstHashElementLineBreak:
+  Enabled: true
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+Layout/FirstMethodParameterLineBreak:
+  Enabled: true
+Layout/HashAlignment:
+  EnforcedLastArgumentHashStyle: always_ignore
+Layout/LineLength:
+  Exclude:
+    - spec/**/*.rb
+  Max: 140
+Layout/MultilineAssignmentLayout:
+  EnforcedStyle: new_line
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+  IndentationWidth: 2
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: true
+Lint/ConstantDefinitionInBlock:
+  Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+Lint/DuplicateElsifCondition:
+  Enabled: true
+Lint/DuplicateRequire:
+  Enabled: true
+Lint/DuplicateRescueException:
+  Enabled: true
+Lint/EmptyConditionalBody:
+  Enabled: true
+Lint/EmptyFile:
+  Enabled: true
+Lint/FloatComparison:
+  Enabled: true
+Lint/HashCompareByIdentity:
+  Enabled: true
+Lint/IdentityComparison:
+  Enabled: true
+Lint/MissingSuper:
+  Enabled: true
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+Lint/OutOfRangeRegexpRef:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: true
+Lint/RedundantSafeNavigation:
+  Enabled: true
+Lint/SelfAssignment:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Lint/TopLevelReturnWithArgument:
+  Enabled: true
+Lint/TrailingCommaInAttributeDeclaration:
+  Enabled: true
+Lint/UnreachableLoop:
+  Enabled: true
+Lint/UselessMethodDefinition:
+  Enabled: true
+Lint/UselessTimes:
+  Enabled: true
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/**/*.rb
+    - spec/**/*.rb
+  Max: 30
+Metrics/BlockLength:
+  Exclude:
+    - db/migrate/**/*.rb
+    - spec/**/*.rb
+Metrics/ClassLength:
+  Exclude:
+    - db/migrate/**/*.rb
+    - spec/**/*.rb
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/**/*.rb
+    - spec/**/*.rb
+  Max: 20
+Performance/Caller:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/CaseWhenSplat:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/Casecmp:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/ChainArrayAllocation:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/CompareWithBlock:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/Count:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/Detect:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/DoubleStartEndWith:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/EndWith:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/FixedSize:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/FlatMap:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/InefficientHashSearch:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/OpenStruct:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/RangeInclude:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/RedundantBlockCall:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/RedundantMatch:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/RedundantMerge:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/RegexpMatch:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/ReverseEach:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/Size:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/StartWith:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/StringReplacement:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/TimesMap:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/UnfreezeString:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Performance/UriDefaultParser:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+Style/AccessorGrouping:
+  Enabled: true
+Style/BisectedAttrAccessor:
+  Enabled: true
+Style/CaseLikeIf:
+  Enabled: true
+Style/ClassEqualityComparison:
+  Enabled: true
+Style/CombinableLoops:
+  Enabled: true
+Style/Documentation:
+  Enabled: false
+Style/ExplicitBlockArgument:
+  Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
+Style/GlobalStdStream:
+  Enabled: true
+Style/HashAsLastArrayItem:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashLikeCase:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/KeywordParametersOrder:
+  Enabled: true
+Style/MethodCallWithArgsParentheses:
+  AllowParenthesesInCamelCaseMethod: true
+  AllowParenthesesInChaining: true
+  AllowParenthesesInMultilineCall: true
+  EnforcedStyle: require_parentheses
+  IgnoreMacros: false
+Style/OptionalBooleanParameter:
+  Enabled: true
+Style/RedundantAssignment:
+  Enabled: true
+Style/RedundantFetchBlock:
+  Enabled: true
+Style/RedundantFileExtensionInRequire:
+  Enabled: true
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+Style/RedundantRegexpEscape:
+  Enabled: true
+Style/RedundantSelfAssignment:
+  Enabled: true
+Style/SingleArgumentDig:
+  Enabled: true
+Style/SlicingWithRange:
+  Enabled: true
+Style/SoleNestedConditional:
+  Enabled: true
+Style/StringConcatenation:
+  Enabled: true
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+
