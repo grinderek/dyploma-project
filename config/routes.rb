@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'users#index'
-  resources :admin
+  root 'welcome#index'
+  scope '/admin' do
+    get '/', to: 'welcome#index'
+  end
 end
