@@ -65,7 +65,12 @@ jobs:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
       # Run rspec in parallel
-      - ruby/rspec-test
+      - run:
+          name: rspec
+          command: bundle exec rake spec
+      - run:
+          name: rubocop
+          command: bundle exec rubocop
 
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:
