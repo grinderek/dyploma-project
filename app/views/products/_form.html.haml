@@ -1,0 +1,34 @@
+%div.container
+  %div.row.justify-content-center
+    %div.col-10
+      =form_with model: @product, class: "shadow p-3 mb-3 bg-info rounded", local: true do |f|
+        %div.form-group.row.mb-3
+          =f.label :name, class: "col-sm-2 col-form-label text-light"
+          %div.col-10
+            =f.text_field :name, class: "form-control shadow rounded", placeholder: "Name of product"
+
+        %div.form-group.row.mb-3
+          =f.label :image, class: "col-sm-2 col-form-label text-light"
+          %div.col-10
+            =f.file_field :image, accept: 'image/jpeg,image/gif,image/png'
+
+        %div.form-group.row.mb-3
+          =f.label :code, class: "col-sm-2 col-form-label text-light"
+          %div.col-10
+            =f.text_field :code, class: "form-control shadow rounded", placeholder: "Vendor code of product"
+
+        %div.form-group.row.mb-3
+          =f.label :price, class: "col-sm-2 col-form-label text-light"
+          %div.col-10
+            =f.number_field :price, class: "form-control shadow rounded", placeholder: "Price of product"
+
+        %div.form-group.row.mb-3
+          =f.label :description, class: "col-sm-2 col-form-label text-light"
+          %div.col-10
+            =f.text_area :description, class: "form-control shadow rounded", placeholder: "Description of product"
+
+        %div.form-group.row.justify-content-center.mb-3
+          %div.text-center
+            =f.submit class: "btn btn-outline-light btn-lg"
+
+      =link_to 'Cancel and return to welcome page', root_path, class: "text-center text-info mb-10 rounded"
