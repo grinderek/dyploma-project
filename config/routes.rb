@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   root 'welcome#index'
   scope '/admin' do
     get '/', to: 'welcome#index'
+    resources :products
   end
 end
