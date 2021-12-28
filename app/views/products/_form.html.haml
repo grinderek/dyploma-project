@@ -1,7 +1,6 @@
 %div.container
   %div.row.justify-content-center
     %div.col-10
-      =render 'shared/errors', obj: @product
       =bootstrap_form_with model: @product, class: "shadow p-3 mb-3 bg-info rounded", local: true do |f|
         =f.text_field :name, placeholder: "Name of product"
         %div.row
@@ -12,6 +11,5 @@
           %div.col
             =f.number_field :price, placeholder: "Price of product"
         =f.text_area :description, placeholder: "Description of product"
+        =link_to 'Cancel', '/admin', class: "btn btn-outline-light btn-lg"
         =f.submit class: "btn btn-outline-light btn-lg"
-
-      =link_to 'Cancel and return to welcome page', '/admin', class: "text-center text-info mb-10 rounded"
