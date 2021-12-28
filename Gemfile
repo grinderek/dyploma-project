@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'haml'
 gem 'activestorage-validator'
+gem "bootstrap_form", "~> 5.0"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
