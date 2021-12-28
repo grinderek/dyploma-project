@@ -1,6 +1,9 @@
 class Product < ApplicationRecord
   has_one_attached :image
 
+  attribute :remove_image, :boolean,  default: false
+  after_save :purge_image, if: :remove_image
+
   validates :image, content_type: { in: %w[image/png image/jpg image/jpeg], message: "This format is not allowed. Allowed formats are jpg, jpeg, png" },
                     size: { less_than: 100.megabytes , message: "File size is too big. Max allowed size is 100 Mb." }
 
