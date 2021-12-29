@@ -6,7 +6,6 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
-    @product.image.attach(params[:image])
   end
 
   def create
@@ -32,7 +31,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :image, :code, :price)
+    params.require(:product).permit(:name, :description, :code, :price, :image, :remove_image)
   end
 
 end

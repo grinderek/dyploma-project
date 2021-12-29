@@ -5,7 +5,18 @@
         =f.text_field :name, placeholder: "Name of product"
         %div.row
           %div.col
-            =f.file_field :image, accept: 'image/jpeg,image/gif,image/png'
+            =f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "input"
+            -if @product.image.attached?
+              =link_to 'Delete', active_storage_attachment_path(@product.image.id), method: :delete, remote: :true, id: "button", class: "btn btn-outline-light"
+            -else
+              %div.btn.btn-outline-light{ id: "button"} Delete
+          %div.col.justify-content-center
+            -if @product.image.attached?
+              =image_tag @product.image, size: "150x200", id:"your_preview_id"
+            -else
+              %img{id: "your_preview_id"}
+
+        %div.row
           %div.col
             =f.text_field :code, placeholder: "Vendor code of product"
           %div.col
@@ -13,3 +24,6 @@
         =f.text_area :description, placeholder: "Description of product"
         =link_to 'Cancel', '/admin', class: "btn btn-outline-light btn-lg"
         =f.submit class: "btn btn-outline-light btn-lg"
+
+=javascript_pack_tag 'delete_button'
+=javascript_pack_tag 'show_image'
