@@ -9,7 +9,7 @@
             -if @product.image.attached?
               =link_to 'Delete image', active_storage_attachment_path(@product.image.id), method: :delete, remote: :true, id: "button", class: "btn btn-outline-light"
             -else
-              %div.btn.btn-outline-light{ id: "button"} Delete
+              %div.btn.btn-outline-light{ id: "button"} Delete image
           %div.col.justify-content-center
             -if @product.image.attached?
               =image_tag @product.image, size: "500x200", id:"your_preview_id"
@@ -20,7 +20,7 @@
           %div.col
             =f.text_field :code, placeholder: "Vendor code of product"
           %div.col
-            =f.number_field :price, placeholder: "Price of product"
+            =f.number_field :price, placeholder: "Price of product", label: "Price(USD)"
         =f.text_area :description, placeholder: "Description of product"
         =link_to 'Cancel', '/admin', class: "btn btn-outline-light btn-lg", data: { confirm: "Are you sure?" }
         =f.submit class: "btn btn-outline-light btn-lg"

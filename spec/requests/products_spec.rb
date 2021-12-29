@@ -18,7 +18,7 @@ RSpec.describe 'Products', type: :request do
       end.to(change { Product.count })
     end
 
-    it 're-render new template when something went wrong' do
+    it 're-render new template when trying to save with invalid params' do
       post products_url, params: { product: { description: 'lorem' } }
 
       expect(response).to render_template(:new)
