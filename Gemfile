@@ -41,6 +41,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'sqlite3', '~> 1.4'
+  gem 'rails-controller-testing'
 end
 
 group :development do
