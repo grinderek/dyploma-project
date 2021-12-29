@@ -5,7 +5,7 @@
         =f.text_field :name, placeholder: "Name of product"
         %div.row
           %div.col
-            =f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "input"
+            =f.file_field :image, accept: 'image/jpeg,image/jpg,image/png', id: "input"
             -if @product.image.attached?
               =link_to 'Delete image', active_storage_attachment_path(@product.image.id), method: :delete, remote: :true, id: "button", class: "btn btn-outline-light"
             -else
