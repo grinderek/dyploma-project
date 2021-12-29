@@ -9,7 +9,7 @@ function showImage(input) {
         reader.onload = function (e) {
             $('#your_preview_id')
                 .attr('src', e.target.result)
-                .width(150)
+                .width(500)
                 .height(200);
         };
 

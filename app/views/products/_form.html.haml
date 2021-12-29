@@ -12,7 +12,7 @@
               %div.btn.btn-outline-light{ id: "button"} Delete
           %div.col.justify-content-center
             -if @product.image.attached?
-              =image_tag @product.image, size: "150x200", id:"your_preview_id"
+              =image_tag @product.image, size: "500x200", id:"your_preview_id"
             -else
               %img{id: "your_preview_id"}
 
@@ -22,7 +22,7 @@
           %div.col
             =f.number_field :price, placeholder: "Price of product"
         =f.text_area :description, placeholder: "Description of product"
-        =link_to 'Cancel', '/admin', class: "btn btn-outline-light btn-lg"
+        =link_to 'Cancel', '/admin', class: "btn btn-outline-light btn-lg", data: { confirm: "Are you sure?" }
         =f.submit class: "btn btn-outline-light btn-lg"
 
 =javascript_pack_tag 'delete_button'
