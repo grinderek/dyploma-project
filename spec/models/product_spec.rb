@@ -4,12 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   subject do
-    described_class.new(
-      name: 'Prod',
-      price: 500,
-      code: 'aie321e',
-      description: 'So nice',
-    )
+    build(:product)
   end
 
   it 'is valid with valid attributes' do
