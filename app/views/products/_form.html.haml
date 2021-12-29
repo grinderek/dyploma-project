@@ -7,7 +7,7 @@
           %div.col
             =f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "input"
             -if @product.image.attached?
-              =link_to 'Delete', active_storage_attachment_path(@product.image.id), method: :delete, remote: :true, id: "button", class: "btn btn-outline-light"
+              =link_to 'Delete image', active_storage_attachment_path(@product.image.id), method: :delete, remote: :true, id: "button", class: "btn btn-outline-light"
             -else
               %div.btn.btn-outline-light{ id: "button"} Delete
           %div.col.justify-content-center
