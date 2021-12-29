@@ -13,13 +13,13 @@ RSpec.describe 'Products', type: :request do
 
   describe 'POST /products' do
     it 'create product successfully with valid params' do
-      expect {
-        post products_url, params: {product: attributes_for(:product)}
-      }.to change { Product.count }
+      expect do
+        post products_url, params: { product: attributes_for(:product) }
+      end.to change { Product.count }
     end
 
     it 're-render new template when something went wrong' do
-      post products_url, params: {product: {description: 'lorem'}}
+      post products_url, params: { product: { description: 'lorem' } }
 
       expect(response).to render_template(:new)
     end

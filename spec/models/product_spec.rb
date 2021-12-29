@@ -45,23 +45,23 @@ RSpec.describe Product, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it "is not valid when vendor code is not alphanumeric" do
+  it 'is not valid when vendor code is not alphanumeric' do
     subject.code = 'a12xzs!'
     expect(subject).to_not be_valid
   end
 
-  it "is not valid when price is longer than 7" do
-    subject.price = 13214121
+  it 'is not valid when price is longer than 7' do
+    subject.price = 13_214_121
     expect(subject).to_not be_valid
   end
 
-  it "is not valid when price is not only numeric" do
-    subject.price = "123sx1"
+  it 'is not valid when price is not only numeric' do
+    subject.price = '123sx1'
     expect(subject).to_not be_valid
   end
 
-  it "is not valid when description is longer than 5000" do
-    subject.description = "a" * 5001
+  it 'is not valid when description is longer than 5000' do
+    subject.description = 'a' * 5001
     expect(subject).to_not be_valid
   end
 end

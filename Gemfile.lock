@@ -96,6 +96,8 @@ GEM
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
     ffi (1.15.4)
+    figaro (1.2.0)
+      thor (>= 0.14.0, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
     haml (5.2.2)
@@ -233,9 +235,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    simple_form (5.1.0)
-      actionpack (>= 5.2)
-      activemodel (>= 5.2)
     spring (4.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -286,6 +285,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   factory_bot
   factory_bot_rails
+  figaro
   haml
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
@@ -301,7 +301,6 @@ DEPENDENCIES
   rubocop-performance
   sass-rails (>= 6)
   selenium-webdriver
-  simple_form
   spring
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
