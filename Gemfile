@@ -26,6 +26,7 @@ gem 'bootstrap_form', '~> 5.0'
 gem 'figaro'
 gem 'haml'
 gem 'jquery-rails'
+gem 'aws-sdk-s3', require: false
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
