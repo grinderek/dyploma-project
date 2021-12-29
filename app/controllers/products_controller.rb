@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.save
       flash[:notice] = 'Product was created successfully'
-      redirect_to root_path
+      redirect_to '/admin'
     else
       render 'new'
     end
@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.update(product_params)
       flash[:notice] = 'Product was updated successfully'
-      redirect_to root_path
+      redirect_to '/admin'
     else
       render 'edit'
     end
