@@ -1,21 +1,20 @@
-let button = () => {
-    let elem = document.getElementById('your_preview_id')
-    if(elem == null || ($('#input').get(0).files.length === 0 && elem.attributes.length === 1)){
-        $('#button').hide();
+let showButton = () => {
+    let elem = document.getElementById('preview_image')
+    if(elem == null || ($('#file_field').get(0).files.length === 0 && elem.attributes.length === 2)){
+        $('#delete_button').hide();
     }
     else {
-        $('#button').show();
+        $('#delete_button').show();
     }
 }
 
-$('#input').change(() => button())
+$('#file_field').change(() => showButton())
 
-$('#button').click(() => {
-    $('#input').val('')
-    let elem = document.getElementById('your_preview_id')
-    while(elem.attributes.length > 1)
-        elem.removeAttribute(elem.attributes[1].name);
-    button()
+$('#delete_button').click(() => {
+    $('#file_field').val('')
+    let elem = document.getElementById('preview_image')
+    elem.removeAttribute('src');
+    showButton()
 })
 
-button()
+showButton()

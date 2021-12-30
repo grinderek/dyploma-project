@@ -1,14 +1,32 @@
 let showImage = input => {
-    if (input.files && input.files[0]) {
+    let elem = document.getElementById('preview_image')
+    if (elem.hasAttribute('src')) elem.removeAttribute('src');
+
+    if (input.files && input.files[0] && isImage(input.files[0].name)) {
         let reader = new FileReader();
 
-        reader.onload = e => $('#your_preview_id')
+        reader.onload = e => $('#preview_image')
             .attr('src', e.target.result)
-            .width(500)
-            .height(200);
 
         reader.readAsDataURL(input.files[0]);
     }
 }
 
-$('#input').change(function () {showImage(this)})
+$('#file_field').change(function () {showImage(this)})
+
+
+let getExtension = filename => {
+    let parts = filename.split('.');
+    return parts[parts.length - 1];
+}
+
+let isImage = filename => {
+    let ext = getExtension(filename);
+    switch (ext.toLowerCase()) {
+        case 'jpg':
+        case 'jpeg':
+        case 'png':
+            return true;
+    }
+    return false;
+}

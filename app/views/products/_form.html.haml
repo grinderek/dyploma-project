@@ -5,16 +5,16 @@
         =f.text_field :name, placeholder: "Name of product"
         %div.row
           %div.col
-            =f.file_field :image, accept: 'image/jpeg,image/jpg,image/png', id: "input"
+            =f.file_field :image, accept: 'image/jpeg,image/jpg,image/png', id: "file_field"
             -if @product.image.attached?
-              =link_to 'Delete image', active_storage_attachment_path(@product.image.id), method: :delete, remote: :true, id: "button", class: "btn btn-outline-light"
+              =link_to 'Delete image', active_storage_attachment_path(@product.image.id), method: :delete, remote: :true, id: "delete_button", class: "btn btn-outline-light"
             -else
-              %div.btn.btn-outline-light{ id: "button"} Delete image
-          %div.col.justify-content-center
+              %div.btn.btn-outline-light{ id: "delete_button"} Delete image
+          %div.col
             -if @product.image.attached?
-              =image_tag @product.image, size: "500x200", id:"your_preview_id"
+              =image_tag @product.image, class: "img-fluid", id:"preview_image"
             -else
-              %img{id: "your_preview_id"}
+              %img.img-fluid{id: "preview_image"}
 
         %div.row
           %div.col
