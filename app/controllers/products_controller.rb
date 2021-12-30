@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:edit, :update]
+  before_action :set_product, only: %i[edit update]
 
   def new
     @product = Product.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @product = Product.new(product_params)

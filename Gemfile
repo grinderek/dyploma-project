@@ -28,6 +28,7 @@ gem 'figaro'
 gem 'haml'
 gem 'jquery-rails'
 # Use Active Storage variant
+gem 'down'
 gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -38,6 +39,8 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot'
   gem 'factory_bot_rails'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+  gem 'haml-lint'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'rubocop', require: false

@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 869641999b268ef154e6e112dd21cb7b2ba9a09e
+  branch: master
+  specs:
+    faker (2.19.0)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -105,6 +113,8 @@ GEM
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     diff-lcs (1.4.4)
+    down (5.2.4)
+      addressable (~> 2.8)
     erubi (1.10.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -119,6 +129,14 @@ GEM
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
+    haml-lint (0.999.999)
+      haml_lint
+    haml_lint (0.37.1)
+      haml (>= 4.0, < 5.3)
+      parallel (~> 1.10)
+      rainbow
+      rubocop (>= 0.50.0)
+      sysexits (~> 1.1)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
@@ -261,6 +279,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    sysexits (1.2.0)
     temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
@@ -301,10 +320,13 @@ DEPENDENCIES
   bootstrap_form (~> 5.0)
   byebug
   capybara (>= 3.26)
+  down
   factory_bot
   factory_bot_rails
+  faker!
   figaro
   haml
+  haml-lint
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails

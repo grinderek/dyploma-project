@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductFinder < BaseFinder
   model Product
 
@@ -9,5 +11,4 @@ class ProductFinder < BaseFinder
   def from_id(id)
     scope.where(id)
   end
-
 end

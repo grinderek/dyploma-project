@@ -5,6 +5,7 @@ AllCops:
     - vendor/**/*
     - bin/**/*
     - lib/templates/**/*
+  NewCops: enable
 Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
 Layout/BeginEndAlignment:
