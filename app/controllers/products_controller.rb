@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
+  before_action :set_product, only: [:edit, :update]
+
   def new
     @product = Product.new
   end
 
   def edit
-    @product = Product.find(params[:id])
   end
 
   def create
@@ -20,7 +21,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update(product_params)
       flash[:notice] = 'Product was updated successfully'
       redirect_to '/admin'
@@ -31,6 +31,10 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def set_product
+    @product = ProductFinder.search(id: params[:id]).first
+  end
 
   def product_params
     params.require(:product).permit(:name, :description, :code, :price, :image)
