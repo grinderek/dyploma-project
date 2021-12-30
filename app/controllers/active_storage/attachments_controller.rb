@@ -2,7 +2,7 @@
 
 module ActiveStorage
   class AttachmentsController < ApplicationController
-    before_action :set_attachment, :authorize_attachment_parent!
+    before_action :set_attachment
 
     def destroy
       @attachment.purge_later
@@ -13,10 +13,6 @@ module ActiveStorage
     def set_attachment
       @attachment = ActiveStorage::Attachment.find(params[:id])
       @record = @attachment.record
-    end
-
-    def authorize_attachment_parent!
-      # authorize! :manage, @record
     end
   end
 end

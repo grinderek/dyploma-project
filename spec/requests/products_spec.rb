@@ -7,10 +7,6 @@ RSpec.describe 'Products', type: :request do
     build(:product)
   end
 
-  describe 'GET /index' do
-    pending "add some examples (or delete) #{__FILE__}"
-  end
-
   describe 'POST /products' do
     it 'create product successfully with valid params' do
       expect do
