@@ -25,9 +25,7 @@ class ProductsController < ApplicationController
       flash[:notice] = 'Product was updated successfully'
       redirect_to '/admin'
     else
-      if @product.image.id == nil
-        @product.image.purge
-      end
+      @product.image.purge if @product.image.id.nil?
       render 'edit'
     end
   end
