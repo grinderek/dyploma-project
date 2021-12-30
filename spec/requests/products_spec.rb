@@ -12,6 +12,8 @@ RSpec.describe 'Products', type: :request do
       expect do
         post products_url, params: { product: attributes_for(:product) }
       end.to(change { Product.count })
+
+      expect(response).to have_http_status(302)
     end
 
     it 're-render new template when trying to save with invalid params' do
