@@ -9,11 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'bootstrap'
 import "../stylesheets/aplication.scss"
-import "show_image"
-import "delete_button"
 
-require("show_image")
-require("delete_button")
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
