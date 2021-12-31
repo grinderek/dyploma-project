@@ -1,4 +1,4 @@
-let showButton = () => {
+const showButton = () => {
     let elem = document.getElementById('preview_image')
     if(elem == null || ($('#file_field').get(0).files.length === 0 && elem.attributes.length === 2)){
         $('#delete_button').hide();

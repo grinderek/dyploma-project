@@ -1,4 +1,4 @@
-let showImage = input => {
+const showImage = input => {
     let elem = document.getElementById('preview_image')
     if (elem.hasAttribute('src')) elem.removeAttribute('src');
 
@@ -15,12 +15,12 @@ let showImage = input => {
 $('#file_field').change(function () {showImage(this)})
 
 
-let getExtension = filename => {
+const getExtension = filename => {
     let parts = filename.split('.');
     return parts[parts.length - 1];
 }
 
-let isImage = filename => {
+const isImage = filename => {
     let ext = getExtension(filename);
     switch (ext.toLowerCase()) {
         case 'jpg':
