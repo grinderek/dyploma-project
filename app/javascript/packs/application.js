@@ -7,7 +7,14 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import 'bootstrap'
+import "../stylesheets/aplication.scss"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+$(document).on('turbolinks:load', () => {
+    require('products/show_image')
+    require('products/delete_button')
+})

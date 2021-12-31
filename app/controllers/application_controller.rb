@@ -7,10 +7,6 @@ class ApplicationController < ActionController::Base
 
   def check_if_admin?
     url = request.path_info
-    if url.include?('/admin')
-      true
-    else
-      false
-    end
+    url.include?('/admin')
   end
 end

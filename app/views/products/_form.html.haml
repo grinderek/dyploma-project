@@ -1,0 +1,26 @@
+%div.container
+  %div.row.justify-content-center
+    %div.col-10
+      =bootstrap_form_with model: @product, class: "shadow p-3 mb-3 bg-info rounded", local: true do |f|
+        =f.text_field :name, placeholder: "Name of product"
+        %div.row
+          %div.col
+            =f.file_field :image, accept: 'image/jpeg,image/jpg,image/png', id: "file_field"
+            -if @product.image.attached?
+              =link_to 'Delete image', active_storage_attachment_path(@product.image.id), method: :delete, remote: :true, id: "delete_button", class: "btn btn-outline-light"
+            -else
+              %div.btn.btn-outline-light{ id: "delete_button"} Delete image
+          %div.col
+            -if @product.image.attached?
+              =image_tag @product.image, class: "img-fluid", id:"preview_image"
+            -else
+              %img.img-fluid{id: "preview_image"}
+
+        %div.row
+          %div.col
+            =f.text_field :code, placeholder: "Vendor code of product"
+          %div.col
+            =f.number_field :price, placeholder: "Price of product", label: "Price(USD)"
+        =f.text_area :description, placeholder: "Description of product"
+        =link_to 'Cancel', '/admin', class: "btn btn-outline-light btn-lg", data: { confirm: "Are you sure?" }
+        =f.submit class: "btn btn-outline-light btn-lg"
