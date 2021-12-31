@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :get_product, only: %i[edit update]
+  before_action :set_product, only: %i[edit update]
 
   def new
     @product = Product.new
@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
 
   private
 
-  def get_product
+  def set_product
     @product = ProductFinder.search(id: params[:id]).first
   end
 

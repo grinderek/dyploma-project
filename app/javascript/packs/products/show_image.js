@@ -12,7 +12,9 @@ const showImage = input => {
     }
 }
 
-$('#file_field').change(function () {showImage(this)})
+$('#file_field').change(function () {
+    showImage(this)
+})
 
 
 const getExtension = filename => {
