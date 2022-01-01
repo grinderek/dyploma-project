@@ -7,7 +7,8 @@
           %div.col
             =f.file_field :image, accept: 'image/jpeg,image/jpg,image/png', id: "file_field"
             -if @product.image.attached?
-              =link_to 'Delete image', active_storage_attachment_path(@product.image.id), method: :delete, remote: :true, id: "delete_button", class: "btn btn-outline-light"
+              =link_to 'Delete image', active_storage_attachment_path(@product.image.id), method: :delete,
+              remote: :true, id: "delete_button", class: "btn btn-outline-light"
             -else
               %div.btn.btn-outline-light{ id: "delete_button"} Delete image
           %div.col
