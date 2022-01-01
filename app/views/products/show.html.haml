@@ -1,0 +1,26 @@
+%div.card.w-50.text-center.mx-auto
+  %div.card-header
+    =@product.name
+  %div.card-body
+    %div.row
+      %div.col
+        %div
+          Vendor code -
+          =@product.code
+        %div
+          Price -
+          =@product.price
+          $
+        %div
+          Description -
+          -if @product.description.nil? || @product.description.empty?
+            empty
+          -else
+            =@product.description
+        =link_to 'Update product', edit_product_path(@product), class: 'btn btn-outline-primary', data: { turbolinks: false }
+        =link_to 'Delete product', '#', class: 'btn btn-outline-danger'
+      %div.col
+        -if @product.image.attached?
+          =image_tag @product.image, class: "img-fluid"
+        -else
+          =image_tag 'placeholder.jpg', class: "img-fluid"
