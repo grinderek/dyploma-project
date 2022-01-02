@@ -20,7 +20,7 @@
         =link_to 'Update product', edit_product_path(@product), class: 'btn btn-outline-primary', data: { turbolinks: false }
         =link_to 'Delete product', '#', class: 'btn btn-outline-danger'
       %div.col
-        -if @product.image.attached?
+        -if @product.image.attached? && @product.image.persisted?
           =image_tag @product.image, class: "img-fluid"
         -else
           =image_tag 'placeholder.jpg', class: "img-fluid"
