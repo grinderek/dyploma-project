@@ -22,6 +22,6 @@
             =f.text_field :code, placeholder: "Vendor code of product"
           %div.col
             =f.number_field :price, placeholder: "Price of product", label: "Price(USD)"
-        =f.text_area :description, placeholder: "Description of product"
+        =f.text_area :description, placeholder: "Description of product", rows: 4
         =link_to 'Cancel', '/admin', class: "btn btn-outline-light btn-lg", data: { confirm: "Are you sure?" }
         =f.submit class: "btn btn-outline-light btn-lg"
