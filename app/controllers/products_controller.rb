@@ -26,7 +26,6 @@ class ProductsController < ApplicationController
       flash[:notice] = 'Product was updated successfully'
       redirect_to product_path(@product)
     else
-      @product.image.purge if @product.image.attached?
       render 'edit'
     end
   end
