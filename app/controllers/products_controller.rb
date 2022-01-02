@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.save
       flash[:notice] = 'Product was created successfully'
-      redirect_to '/admin'
+      redirect_to product_path(@product)
     else
       render 'new'
     end
@@ -24,9 +24,9 @@ class ProductsController < ApplicationController
   def update
     if @product.update(product_params)
       flash[:notice] = 'Product was updated successfully'
-      redirect_to '/admin'
+      redirect_to product_path(@product)
     else
-      @product.image.purge if @product.image.id.nil?
+      @product.image.purge if @product.image.attached?
       render 'edit'
     end
   end
