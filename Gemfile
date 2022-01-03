@@ -30,6 +30,7 @@ gem 'jquery-rails'
 # Use Active Storage variant
 gem 'down'
 gem 'image_processing', '~> 1.2'
+gem 'simplecov', require: false, group: :test
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

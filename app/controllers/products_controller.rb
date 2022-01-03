@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :product, only: %i[edit update]
+  before_action :product, only: %i[edit update show]
 
   def new
     @product = Product.new
@@ -9,11 +9,13 @@ class ProductsController < ApplicationController
 
   def edit; end
 
+  def show; end
+
   def create
     @product = Product.new(product_params)
     if @product.save
       flash[:notice] = 'Product was created successfully'
-      redirect_to '/admin'
+      redirect_to product_path(@product)
     else
       render 'new'
     end
@@ -22,9 +24,8 @@ class ProductsController < ApplicationController
   def update
     if @product.update(product_params)
       flash[:notice] = 'Product was updated successfully'
-      redirect_to '/admin'
+      redirect_to product_path(@product)
     else
-      @product.image.purge if @product.image.id.nil?
       render 'edit'
     end
   end
