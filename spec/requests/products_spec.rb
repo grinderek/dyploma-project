@@ -50,4 +50,23 @@ RSpec.describe 'Products', type: :request do
       expect(response.body).to include 'active_storage/blobs/redirect/'
     end
   end
+
+  describe 'DELETE /products/:id' do
+    before(:each) do
+      @product = build(:product)
+      @product2 = build(:product)
+      @product.save
+      @product2.save
+      delete "/admin/products/#{@product.id}"
+    end
+
+    it 'should return status 302(Redirect to /admin)' do
+      expect(response.status).to eq 302
+    end
+
+    it 'should delete the product' do
+      expect(Product.all.size).to eq 1
+      expect(Product.all.first).to eq @product2
+    end
+  end
 end
