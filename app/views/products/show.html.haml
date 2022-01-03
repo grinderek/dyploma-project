@@ -1,28 +1,28 @@
 %h1
-  =@product.name
+  = @product.name
 %div
   %span.fw-lighter
     Vendor code:
-  =@product.code
+  = @product.code
 .row.mt-2
   .col-6
     -if @product.image.attached? && @product.image.persisted?
-      =image_tag @product.image, class: "img-fluid card-img-top mb-4"
+      = image_tag @product.image, class: "img-fluid card-img-top mb-4"
     -else
-      =image_tag 'placeholder.jpg', class: "img-fluid card-img-top mh-100 mb-4"
+      = image_tag 'placeholder.jpg', class: "img-fluid card-img-top mh-100 mb-4"
   .col-6
     %h3
-      =@product.price
+      = @product.price
       $
-    =link_to 'Delete product', product_path(@product), method: :delete,
+    = link_to 'Delete product', product_path(@product), method: :delete,
     data: { confirm: "Are you sure you want to delete the product?" }, class: 'btn btn-outline-danger'
-    =link_to 'Update product', edit_product_path(@product), class: 'btn btn-outline-primary', data: {turbolinks: false}
+    = link_to 'Update product', edit_product_path(@product), class: 'btn btn-outline-primary', data: {turbolinks: false}
   %div
     %h3
       Description
     -if @product.description.nil? || @product.description.empty?
       Empty
     -else
-      =simple_format(@product.description)
+      = simple_format(@product.description)
 
 
