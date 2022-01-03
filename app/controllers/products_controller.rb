@@ -3,6 +3,10 @@
 class ProductsController < ApplicationController
   before_action :product, only: %i[edit update show destroy]
 
+  def index
+    @products = Product.paginate(page: params[:page], per_page: 10)
+  end
+
   def new
     @product = Product.new
   end
