@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :product, only: %i[edit update show]
+  before_action :product, only: %i[edit update show destroy]
 
   def new
     @product = Product.new
@@ -28,6 +28,11 @@ class ProductsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @product.destroy
+    redirect_to '/admin'
   end
 
   private
