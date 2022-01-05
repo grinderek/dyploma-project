@@ -18,7 +18,7 @@
       - @products.each do |product|
         %tr
           %td
-            = check_box_tag("check_#{product.id}", "check_#{product.id}", false)
+            = check_box_tag("check_#{product.id}", "check_#{product.id}", false, onClick: "checkOne(this);")
           %td
             = product.name
           %td
@@ -39,14 +39,35 @@
 = will_paginate @products
 :javascript
   function checkAll(check_all){
-    var inputs = document.getElementsByTagName("input");
-    for (var i = 0; i < inputs.length; i++) {
+    const inputs = document.getElementsByTagName("input")
+    for (let i = 0; i < inputs.length; i++) {
       if (inputs[i].type === "checkbox" && inputs[i].name !== check_all.name) {
         if(check_all.checked === true){
-          inputs[i].checked = true ;
+          inputs[i].checked = true
         }else{
-          inputs[i].checked = false ;
+          inputs[i].checked = false
         }
       }
+    }
+  }
+
+  function checkOne(check_one){
+    const checkbox = document.getElementsByName(check_one)
+    checkbox.checked ^= true
+
+    let inputs = [].slice.call(document.getElementsByTagName("input"))
+    console.log(inputs)
+    inputs = inputs.filter(x => (x.type === "checkbox" && x.name !== 'check_all'))
+    const check_all = document.getElementsByName('check_all')
+    const count_of_all = inputs.length
+    const count_of_checked = inputs.filter(x => x.checked === true).length
+
+    console.log(count_of_all)
+    console.log(count_of_checked)
+    console.log(check_all)
+    if (count_of_checked === count_of_all) {
+      check_all[0].checked = true
+    } else {
+      check_all[0].checked = false
     }
   }
