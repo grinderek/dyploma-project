@@ -37,3 +37,16 @@
             data: {turbolinks: false}
 
 = will_paginate @products
+:javascript
+  function checkAll(check_all){
+    var inputs = document.getElementsByTagName("input");
+    for (var i = 0; i < inputs.length; i++) {
+      if (inputs[i].type === "checkbox" && inputs[i].name !== check_all.name) {
+        if(check_all.checked === true){
+          inputs[i].checked = true ;
+        }else{
+          inputs[i].checked = false ;
+        }
+      }
+    }
+  }
