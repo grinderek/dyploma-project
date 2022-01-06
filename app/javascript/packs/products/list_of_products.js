@@ -1,3 +1,12 @@
+window.uncheck = () => {
+    const inputs = document.getElementsByTagName("input")
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].checked = false
+    }
+}
+
+uncheck()
+
 window.checkAll = (check_all) => {
     const inputs = document.getElementsByTagName("input")
     for (let i = 0; i < inputs.length; i++) {
@@ -28,7 +37,7 @@ window.checkOne = (check_one) => {
     }
 }
 
-$(':checkbox').change(() => {
+window.$(':checkbox').change(() => {
     let inputs = [].slice.call(document.getElementsByTagName("input"))
     inputs = inputs.filter(x => (x.type === "checkbox" && x.name !== 'check_all'))
     const count_of_checked = inputs.filter(x => x.checked === true).length

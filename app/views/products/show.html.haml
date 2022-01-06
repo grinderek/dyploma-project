@@ -14,8 +14,9 @@
     %h3
       = @product.price
       $
-    = link_to 'Delete product', product_path(@product), method: :delete,
-    data: { confirm: "Are you sure you want to delete the product?" }, class: 'btn btn-outline-danger'
+    %button.btn.btn-outline-danger{"data-bs-target" => "#exampleModal",
+    "data-bs-toggle" => "modal", type: "button"}
+      Delete Product
     = link_to 'Update product', edit_product_path(@product), class: 'btn btn-outline-primary', data: {turbolinks: false}
   %div
     %h3
@@ -25,4 +26,18 @@
     -else
       = simple_format(@product.description)
 
+%button.btn.btn-lg.btn-outline-danger{"data-bs-target" => "#exampleModal", "data-bs-toggle" => "modal", type: "button",
+  id: 'delete_product', disabled: true}
+  Delete Products
 
+#exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5#exampleModalLabel.modal-title Delete Products
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", type: "button"}
+      .modal-body
+        Are you sure you want to delete the product?
+      .modal-footer
+        %button.btn.btn-secondary{"data-bs-dismiss" => "modal", type: "button"} Close
+        = link_to 'Delete', product_path(@product), method: :delete, class: 'btn btn-danger'

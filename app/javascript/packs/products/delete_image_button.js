@@ -8,9 +8,9 @@ const showButton = () => {
     }
 }
 
-$('#file_field').change(() => showButton())
+window.$('#file_field').change(() => showButton())
 
-$('#delete_button').click(() => {
+window.$('#delete_button').click(() => {
     $('#file_field').val('')
     let elem = document.getElementById('preview_image')
     elem.removeAttribute('src');

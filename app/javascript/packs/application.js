@@ -4,17 +4,16 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'bootstrap'
 import "../stylesheets/aplication.scss"
 
 Rails.start()
-Turbolinks.start()
 ActiveStorage.start()
+window.jQuery = window.$ = jQuery;
 
-$(document).on('turbolinks:load', () => {
+$(document).ready(() => {
     require('products/show_image')
     require('products/delete_image_button')
     require('products/list_of_products')
