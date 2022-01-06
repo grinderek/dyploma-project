@@ -69,4 +69,30 @@ RSpec.describe 'Products', type: :request do
       expect(Product.all.first).to eq @product2
     end
   end
+
+  describe 'GET /products' do
+    before(:each) do
+      10.times do
+        @product = build(:product)
+        @product.save
+      end
+      @product = build(:product)
+      @product.save
+      get products_path
+    end
+
+    it 'should contain pagination when more count than 10 products' do
+      expect(response.body).to include 'class="pagination"'
+    end
+
+    it 'shouldn\'t contain pagination when count less or equal 10 products' do
+      delete "/admin/products/#{@product.id}"
+      get products_path
+      expect(response.body).to_not include 'class="pagination"'
+    end
+
+    it 'Delete button should be disable when all checkboxes unchecked' do
+      expect(response).to
+    end
+  end
 end
