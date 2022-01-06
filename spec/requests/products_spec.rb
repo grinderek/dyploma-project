@@ -90,9 +90,5 @@ RSpec.describe 'Products', type: :request do
       get products_path
       expect(response.body).to_not include 'class="pagination"'
     end
-
-    it 'Delete button should be disable when all checkboxes unchecked' do
-      expect(response).to
-    end
   end
 end
