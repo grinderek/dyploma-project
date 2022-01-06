@@ -5,21 +5,6 @@ window.uncheck = () => {
     }
 }
 
-uncheck()
-
-window.checkAll = (check_all) => {
-    const inputs = document.getElementsByTagName("input")
-    for (let i = 0; i < inputs.length; i++) {
-        if (inputs[i].type === "checkbox" && inputs[i].name !== check_all.name) {
-            if(check_all.checked === true){
-                inputs[i].checked = true
-            }else{
-                inputs[i].checked = false
-            }
-        }
-    }
-}
-
 window.checkOne = (check_one) => {
     const checkbox = document.getElementsByName(check_one)
     checkbox.checked ^= true
@@ -36,6 +21,21 @@ window.checkOne = (check_one) => {
         check_all[0].checked = false
     }
 }
+
+window.checkAll = (check_all) => {
+    const inputs = document.getElementsByTagName("input")
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].type === "checkbox" && inputs[i].name !== check_all.name) {
+            if(check_all.checked === true){
+                inputs[i].checked = true
+            }else{
+                inputs[i].checked = false
+            }
+        }
+    }
+}
+
+
 
 window.$(':checkbox').change(() => {
     let inputs = [].slice.call(document.getElementsByTagName("input"))
@@ -69,3 +69,5 @@ window.deleteProducts = async () => {
     }
     window.location.reload(true)
 }
+
+uncheck()
