@@ -36,9 +36,14 @@
             = link_to 'Update product', edit_product_path(product), class: 'btn btn-outline-warning',
             data: {turbolinks: false}
 
-%button.btn.btn-lg.btn-outline-danger{"data-bs-target" => "#exampleModal", "data-bs-toggle" => "modal", type: "button",
-  id: 'delete_product', disabled: true}
-  Delete Products
+.row
+  .col
+    %button.btn.btn-lg.btn-outline-danger{"data-bs-target" => "#exampleModal", "data-bs-toggle" => "modal", type: "button",
+      id: 'delete_product', disabled: true}
+      Delete Products
+  .col
+    .flickr_pagination.mb-4.float-end
+      = will_paginate @products
 
 #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", tabindex: "-1"}
   .modal-dialog
@@ -51,7 +56,6 @@
       .modal-footer
         %button.btn.btn-secondary{"data-bs-dismiss" => "modal", type: "button"} Close
         %button.btn.btn-danger{type: "button", id:"delete-products", onclick:"deleteProducts();"} Delete
-.flickr_pagination.mb-4
-  = will_paginate @products
+
 
 
