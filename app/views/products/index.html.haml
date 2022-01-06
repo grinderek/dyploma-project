@@ -36,39 +36,9 @@
             = link_to 'Update product', edit_product_path(product), class: 'btn btn-outline-warning',
             data: {turbolinks: false}
 
+=button_tag "Delete Products", type: 'button', onclick: "deleteProducts();", class: "btn btn-lg btn-outline-danger",
+id: 'delete_product', disabled: true
+
 .flickr_pagination.mb-4
   = will_paginate @products
-:javascript
-  function checkAll(check_all){
-    const inputs = document.getElementsByTagName("input")
-    for (let i = 0; i < inputs.length; i++) {
-      if (inputs[i].type === "checkbox" && inputs[i].name !== check_all.name) {
-        if(check_all.checked === true){
-          inputs[i].checked = true
-        }else{
-          inputs[i].checked = false
-        }
-      }
-    }
-  }
 
-  function checkOne(check_one){
-    const checkbox = document.getElementsByName(check_one)
-    checkbox.checked ^= true
-
-    let inputs = [].slice.call(document.getElementsByTagName("input"))
-    console.log(inputs)
-    inputs = inputs.filter(x => (x.type === "checkbox" && x.name !== 'check_all'))
-    const check_all = document.getElementsByName('check_all')
-    const count_of_all = inputs.length
-    const count_of_checked = inputs.filter(x => x.checked === true).length
-
-    console.log(count_of_all)
-    console.log(count_of_checked)
-    console.log(check_all)
-    if (count_of_checked === count_of_all) {
-      check_all[0].checked = true
-    } else {
-      check_all[0].checked = false
-    }
-  }

@@ -16,5 +16,6 @@ ActiveStorage.start()
 
 $(document).on('turbolinks:load', () => {
     require('products/show_image')
-    require('products/delete_button')
+    require('products/delete_image_button')
+    require('products/list_of_products')
 })
