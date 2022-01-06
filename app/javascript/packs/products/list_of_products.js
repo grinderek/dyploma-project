@@ -35,8 +35,6 @@ window.checkAll = (check_all) => {
     }
 }
 
-
-
 window.$(':checkbox').change(() => {
     let inputs = [].slice.call(document.getElementsByTagName("input"))
     inputs = inputs.filter(x => (x.type === "checkbox" && x.name !== 'check_all'))
@@ -67,7 +65,7 @@ window.deleteProducts = async () => {
                 .then(res => console.log(res))
         }
     }
-    window.location.reload(true)
+    window.location.replace(window.location.origin + `/admin/products`);
 }
 
 uncheck()
