@@ -60,8 +60,8 @@ RSpec.describe 'Products', type: :request do
       delete "/admin/products/#{@product.id}"
     end
 
-    it 'should return status 302(Redirect to /admin)' do
-      expect(response.status).to eq 302
+    it 'should return status 303(Redirect to /admin)' do
+      expect(response.status).to eq 303
     end
 
     it 'should delete the product' do

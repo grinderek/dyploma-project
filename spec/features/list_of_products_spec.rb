@@ -27,15 +27,24 @@ RSpec.feature 'List of products', type: :feature do
 
   scenario 'Delete products when click on Delete Products button' do
     find(:css, '#check_1').set(true)
-    click_button 'Delete Products'
-    click_button('Delete', exact: true)
-    expect(page).to_not have_selector('#check_1')
+    expect do
+      click_button 'Delete Products'
+      click_button('Delete', exact: true)
+      expect(page).to_not have_selector('#check_1')
+    end.to change { Product.count }.by(-1)
   end
 
   scenario 'Select check_all checkbox and click Delete button' do
     find(:css, '#check_all').set(true)
-    click_button 'Delete Products'
-    click_button('Delete', exact: true)
-    expect(Product.count).to change.by(10)
+    expect do
+      click_button 'Delete Products'
+      click_button('Delete', exact: true)
+      expect(page).to have_selector('#check_11')
+    end.to change { Product.count }.by(-10)
+  end
+
+  scenario 'Go to different page' do
+    click_link('2', exact: true)
+    expect(page).to have_selector('#check_11')
   end
 end
