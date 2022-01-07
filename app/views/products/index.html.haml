@@ -38,24 +38,13 @@
 
 .row
   .col
-    %button.btn.btn-lg.btn-outline-danger{"data-bs-target" => "#exampleModal", "data-bs-toggle" => "modal", type: "button",
-      id: 'delete_product', disabled: true}
+    %button.btn.btn-lg.btn-outline-danger{"data-bs-target" => "#confirmPopup", "data-bs-toggle" => "modal",
+    type: "button", id: 'delete_product', disabled: true}
       Delete Products
   .col
     .flickr_pagination.mb-4.float-end
       = will_paginate @products
 
-#exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", tabindex: "-1"}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %h5#exampleModalLabel.modal-title Delete Products
-        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", type: "button"}
-      .modal-body
-        Are you sure you want to delete selected products?
-      .modal-footer
-        %button.btn.btn-secondary{"data-bs-dismiss" => "modal", type: "button"} Close
-        %button.btn.btn-danger{type: "button", id:"delete-products", onclick:"deleteProducts();"} Delete
-
+= render 'modal', many: true
 
 
