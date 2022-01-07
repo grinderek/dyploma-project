@@ -23,14 +23,14 @@ gem 'jbuilder', '~> 2.7'
 gem 'active_storage_validations'
 gem 'aws-sdk-s3', require: false
 gem 'bootstrap_form', '~> 5.0'
+gem 'down'
 gem 'factory_bot'
 gem 'factory_bot_rails'
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'figaro'
 gem 'haml'
-gem 'jquery-rails'
-gem 'down'
 gem 'image_processing', '~> 1.2'
+gem 'jquery-rails'
 gem 'simplecov', require: false, group: :test
 gem 'will_paginate', '~> 3.3'
 

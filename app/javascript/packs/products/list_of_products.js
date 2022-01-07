@@ -55,14 +55,11 @@ window.deleteProducts = async () => {
     for (let i = 0; i < inputs.length; i++) {
         if (inputs[i].checked === true) {
             const id = inputs[i].name.substr(6)
+            console.log(id)
+            console.log(window.location.origin)
             await fetch(window.location.origin + `/admin/products/${id}`, {
                 method: "DELETE",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
             })
-                .then(res => console.log(res))
         }
     }
     window.location.replace(window.location.origin + `/admin/products`);
