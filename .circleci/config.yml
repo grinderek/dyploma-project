@@ -29,7 +29,7 @@ jobs:
     parallelism: 3
     # here we set TWO docker images.
     docker:
-      - image: cimg/ruby:3.0.2-node # this is our primary docker image, where step commands run.
+      - image: cimg/ruby:3.0.2-browsers # this is our primary docker image, where step commands run.
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -64,11 +64,6 @@ jobs:
       - run:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
-      run:
-        name: Setup Chrome
-        command: |
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt install ./google-chrome-stable_current_amd64.deb
       # Run rspec in parallel
       - run:
           name: rspec
