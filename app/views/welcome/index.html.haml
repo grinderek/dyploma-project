@@ -1,5 +1,6 @@
 - if check_if_admin?
   %h3 This is Admin page!
-  = link_to "Create", new_product_path, class: "btn btn-outline-dark ntn-lg", data: { turbolinks: false }
+  = link_to "Create", new_product_path, class: "btn btn-outline-dark ntn-lg"
+  = link_to "View products", products_path, class: "btn btn-outline-dark ntn-lg"
 -else
   %h3 This is User page!
