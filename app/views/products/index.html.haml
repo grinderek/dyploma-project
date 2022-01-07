@@ -2,8 +2,9 @@
   %table.table.table-striped
     %thead
       %tr
-        %th
-          = check_box_tag('check_all', 'check_all', false, onClick: "checkAll(this);")
+        -if check_if_admin?
+          %th
+            = check_box_tag('check_all', 'check_all', false, onClick: "checkAll(this);")
         %th
           Name
         %th
@@ -17,8 +18,9 @@
     %tbody
       - @products.each do |product|
         %tr
-          %td
-            = check_box_tag("check_#{product.id}", "check_#{product.id}", false, onClick: "checkOne(this);")
+          -if check_if_admin?
+            %td
+              = check_box_tag("check_#{product.id}", "check_#{product.id}", false, onClick: "checkOne(this);")
           %td
             = product.name
           %td
@@ -38,9 +40,10 @@
 
 .row
   .col
-    %button.btn.btn-lg.btn-outline-danger{"data-bs-target" => "#confirmPopup", "data-bs-toggle" => "modal",
-    type: "button", id: 'delete_product', disabled: true}
-      Delete Products
+    -if check_if_admin?
+      %button.btn.btn-lg.btn-outline-danger{"data-bs-target" => "#confirmPopup", "data-bs-toggle" => "modal",
+      type: "button", id: 'delete_product', disabled: true}
+        Delete Products
   .col
     .flickr_pagination.mb-4.float-end
       = will_paginate @products
