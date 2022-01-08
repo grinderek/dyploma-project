@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   scope '/admin' do
     get '/', to: 'welcome#index'
     resources :products, except: [:index]
-    get '/products', to: 'products#admin_index', as: 'pr'
+    get '/products', to: 'products#admin_index'
   end
 
   resources :products, only: %i[index show], as: 'user_product'
