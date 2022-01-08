@@ -14,6 +14,6 @@
           %li.nav-item
             = link_to 'View products', user_product_index_path, class: 'nav-link'
       .d-flex
-        = link_to '#' do
+        = link_to '#', class: 'nav-link' do
           %i.fa.fa-shopping-cart
           = current_order.order_items.count
