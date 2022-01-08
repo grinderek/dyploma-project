@@ -33,11 +33,12 @@
           %td
             = product.price
           %td
-            = link_to 'View product', product_path(product), class: 'btn btn-outline-primary',
-            data: {turbolinks: false}
-            = link_to 'Update product', edit_product_path(product), class: 'btn btn-outline-warning',
-            data: {turbolinks: false}
-
+            - if check_if_admin?
+              = link_to 'View product', product_path(product), class: 'btn btn-outline-info'
+              = link_to 'Update product', edit_product_path(product), class: 'btn btn-outline-warning'
+            - else
+              = link_to 'View product', user_product_path(product), class: 'btn btn-outline-info'
+              = link_to 'Add to cart', '#', class: 'btn btn-outline-primary'
 .row
   .col
     -if check_if_admin?
@@ -46,7 +47,10 @@
         Delete Products
   .col
     .flickr_pagination.mb-4.float-end
-      = will_paginate @products
+      - if check_if_admin?
+        = will_paginate @products
+      - else
+        = will_paginate(@products, :params => { :controller => user_product_index_path })
 
 = render 'modal', many: true
 
