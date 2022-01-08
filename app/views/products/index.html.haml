@@ -38,7 +38,10 @@
               = link_to 'Update product', edit_product_path(product), class: 'btn btn-outline-warning'
             - else
               = link_to 'View product', user_product_path(product), class: 'btn btn-outline-info'
-              = link_to 'Add to cart', '#', class: 'btn btn-outline-primary'
+              = bootstrap_form_with model: @order_item,local: false  do |f|
+                = f.hidden_field :product_id, value: product.id
+                = f.hidden_field :quantity, value: 1
+                = f.submit "Add To Cart", class: 'btn btn-outline-primary'
 .row
   .col
     -if check_if_admin?
