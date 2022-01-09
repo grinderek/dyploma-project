@@ -5,21 +5,13 @@ class OrderItemsController < ApplicationController
 
   def create
     @order_item = @order.order_items.new(order_params)
-    @order.save
-    session[:order_id] = @order.id
-    redirect_to user_product_index_path
-  end
-
-  def update
-    @order_item = @order.order_items.find(params[:id])
-    @order_item.update(order_params)
-    @order_items = current_order.order_items
-  end
-
-  def destroy
-    @order_item = @order.order_items.find(params[:id])
-    @order_item.destroy
-    @order_items = current_order.order_items
+    if @order.save
+      flash[:notice] = 'Product was created successfully'
+      session[:order_id] = @order.id
+      redirect_to user_product_index_path
+    else
+      render 'products/index'
+    end
   end
 
   private
