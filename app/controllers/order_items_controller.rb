@@ -7,6 +7,7 @@ class OrderItemsController < ApplicationController
     @order_item = @order.order_items.new(order_params)
     @order.save
     session[:order_id] = @order.id
+    redirect_to user_product_index_path
   end
 
   def update
