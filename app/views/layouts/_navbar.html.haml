@@ -17,4 +17,6 @@
         .d-flex
           = link_to '#', class: 'nav-link' do
             %i.fa.fa-shopping-cart
-            = current_order.order_items.count
+            - if current_order.order_items.count != 0
+              %div{id: "count_of_products"}
+                = current_order.order_items.count

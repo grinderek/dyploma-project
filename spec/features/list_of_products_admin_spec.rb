@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'List of products', type: :feature do
+RSpec.feature 'List of products[Admin]', type: :feature do
   before(:each) do
     11.times do
       @product = build(:product)
@@ -20,7 +20,7 @@ RSpec.feature 'List of products', type: :feature do
     expect(page).to have_button('Delete Products', disabled: false)
   end
 
-  scenario 'Delete products when click on Delete Products button', :js do
+  scenario 'Delete products when click on Delete Products button', :selenium_chrome do
     find(:css, '#check_1').set(true)
     expect do
       click_button 'Delete Products'

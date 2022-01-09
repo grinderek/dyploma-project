@@ -17,7 +17,7 @@
           Actions
     %tbody
       - @products.each do |product|
-        %tr
+        %tr{id: "product_#{product.id}"}
           -if check_if_admin?
             %td
               = check_box_tag("check_#{product.id}", "check_#{product.id}", false, onClick: "checkOne(this);")
@@ -43,9 +43,9 @@
                   = bootstrap_form_with model: @order_item do |f|
                     = f.hidden_field :product_id, value: product.id
                     = f.hidden_field :quantity, value: 1
-                    = f.submit "Add To Cart", class: 'btn btn-outline-primary'
+                    = f.submit "Add To Cart", class: 'btn btn-outline-primary', id: "add_#{product.id}"
                 - else
-                  %button.btn.btn-outline-primary{disabled: "disabled"}
+                  %button.btn.btn-outline-primary{disabled: "disabled", id: "added_#{product.id}"}
                     Already added
 .row
   .col
