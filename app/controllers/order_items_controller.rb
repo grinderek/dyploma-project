@@ -6,7 +6,7 @@ class OrderItemsController < ApplicationController
   def create
     @order_item = @order.order_items.new(order_params)
     if @order.save
-      flash[:notice] = 'Product was created successfully'
+      flash[:notice] = "The #{ProductFinder.search(id: @order_item.product_id).first.name} was successfully added to the cart"
       session[:order_id] = @order.id
       redirect_to user_product_index_path
     else
