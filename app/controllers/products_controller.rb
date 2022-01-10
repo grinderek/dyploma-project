@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :product, only: %i[edit update show destroy]
+  before_action :product, only: %i[edit update show]
   before_action :pagination, only: %i[admin_index index]
   skip_forgery_protection
 
@@ -41,7 +41,8 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
+    @products = ProductFinder.search(id: params[:id].split('-'))
+    @products.destroy_all
     redirect_to products_path, status: 303
   end
 
@@ -52,7 +53,12 @@ class ProductsController < ApplicationController
   end
 
   def pagination
-    @products = Product.paginate(page: params[:page], per_page: 10)
+    max_page = (Product.count / 10) + ((Product.count % 10).zero? ? 0 : 1)
+    @products = if params[:page].nil? || params[:page].to_i <= max_page
+      Product.paginate(page: params[:page], per_page: 10)
+    else
+      Product.paginate(page: max_page.to_s, per_page: 10)
+    end
   end
 
   def product_params
