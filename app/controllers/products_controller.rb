@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
 
   def index
     @order_item = current_order.order_items.new
+    session[:return_to] = request.referer
   end
 
   def new

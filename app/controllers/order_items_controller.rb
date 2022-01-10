@@ -6,9 +6,21 @@ class OrderItemsController < ApplicationController
   def create
     @order_item = @order.order_items.new(order_params)
     if @order.save
-      flash[:notice] = "The #{ProductFinder.search(id: @order_item.product_id).first.name} was successfully added to the cart"
+      flash[:notice] = "The #{ProductFinder.search(id: @order_item.product_id).first.name}
+                        was successfully added to the cart"
       session[:order_id] = @order.id
-      redirect_to user_product_index_path
+      redirect_to session.delete(:return_to)
+    else
+      render 'products/index'
+    end
+  end
+
+  def update
+    @order_item = @order.order_items.find(params[:id])
+    if @order_item.update(order_params)
+      flash[:notice] = "The #{ProductFinder.search(id: @order_item.product_id).first.name}
+                        was successfully added to the cart"
+      redirect_to session.delete(:return_to)
     else
       render 'products/index'
     end

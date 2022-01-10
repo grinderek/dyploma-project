@@ -45,8 +45,11 @@
                     = f.hidden_field :quantity, value: 1
                     = f.submit "Add To Cart", class: 'btn btn-outline-primary', id: "add_#{product.id}"
                 - else
-                  %button.btn.btn-outline-primary{disabled: "disabled", id: "added_#{product.id}"}
-                    Already added
+                  = bootstrap_form_with model: current_order.order_items.where(product_id: product.id).first do |f|
+                    = f.hidden_field :product_id, value: product.id
+                    = f.hidden_field :quantity,
+                      value: current_order.order_items.where(product_id: product.id).first.quantity + 1
+                    = f.submit "Add To Cart", class: 'btn btn-outline-primary', id: "add_#{product.id}"
 .row
   .col
     -if check_if_admin?
