@@ -2,11 +2,12 @@
 
 class ProductsController < ApplicationController
   before_action :product, only: %i[edit update show destroy]
+  before_action :pagination, only: %i[index]
   skip_forgery_protection
 
-  def index
-    @products = Product.paginate(page: params[:page], per_page: 10)
-  end
+  MAX_PAGE = (Product.count / 10) + ((Product.count % 10).zero? ? 0 : 1)
+
+  def index; end
 
   def new
     @product = Product.new
@@ -44,6 +45,14 @@ class ProductsController < ApplicationController
 
   def product
     @product = ProductFinder.search(id: params[:id]).first
+  end
+
+  def pagination
+    @products = if params[:page].nil? || params[:page].to_i <= MAX_PAGE
+      Product.paginate(page: params[:page], per_page: 10)
+    else
+      Product.paginate(page: MAX_PAGE.to_s, per_page: 10)
+    end
   end
 
   def product_params
