@@ -15,11 +15,6 @@ RSpec.feature 'List of products[User]', type: :feature do
     expect(page).to_not have_selector('#count_of_products')
   end
 
-  scenario 'After add product to cart show already added' do
-    find('#add_1').click
-    expect(page).to have_selector('#added_1')
-  end
-
   scenario 'After add product show count of products' do
     find('#add_1').click
     expect(page).to have_selector('#count_of_products')
