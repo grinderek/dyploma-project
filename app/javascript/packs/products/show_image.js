@@ -15,10 +15,6 @@ const isImage = filename => {
 }
 
 const showImage = input => {
-    if (!input) {
-        return
-    }
-
     let elem = document.getElementById('preview_image')
     if (elem.hasAttribute('src')) elem.removeAttribute('src');
 
@@ -35,5 +31,3 @@ const showImage = input => {
 window.$('#file_field').change(function () {
     showImage(this)
 })
-
-showImage(document.getElementById('file_field'))

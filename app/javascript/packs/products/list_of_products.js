@@ -50,18 +50,14 @@ window.$(':checkbox').change(() => {
 
 window.deleteProducts = async () => {
     let inputs = [].slice.call(document.getElementsByTagName("input"))
-    inputs = inputs.filter(x => (x.type === "checkbox" && x.name !== 'check_all'))
+    inputs = inputs.filter(x => (x.type === "checkbox" && x.name !== 'check_all' && x.checked))
+                   .map(x => x.name.substr(6)).join('-')
 
-    for (let i = 0; i < inputs.length; i++) {
-        if (inputs[i].checked === true) {
-            const id = inputs[i].name.substr(6)
-            await fetch(window.location.origin + `/admin/products/${id}`, {
-                method: "DELETE",
-            })
-        }
-    }
+    await fetch(window.location.origin + `/admin/products/${inputs}`, {
+        method: "DELETE"
+    })
 
-    window.location.replace(window.location.origin + `/admin/products`);
+    window.location.replace(window.location.origin + `/admin/products`)
 }
 
 uncheck()

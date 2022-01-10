@@ -9,11 +9,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'factory_bot_rails'
 
-FactoryBot.create(:product)
-FactoryBot.create(:product)
-FactoryBot.create(:product)
-FactoryBot.create(:product)
-FactoryBot.create(:product)
-FactoryBot.create(:product)
-FactoryBot.create(:product)
-FactoryBot.create(:product)
+FactoryBot.create_list(:product, 10)

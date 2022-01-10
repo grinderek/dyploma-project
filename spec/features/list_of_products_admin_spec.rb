@@ -4,10 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'List of products[Admin]', type: :feature do
   before(:each) do
-    11.times do
-      @product = build(:product)
-      @product.save
-    end
+    build_list(:product, 11, &:save)
     visit products_path
   end
 
@@ -26,6 +23,7 @@ RSpec.feature 'List of products[Admin]', type: :feature do
       click_button 'Delete Products'
       click_button('Delete', exact: true)
       expect(page).to_not have_selector('#check_1')
+      expect(page).to have_selector('#check_11')
     end.to change { Product.count }.by(-1)
   end
 

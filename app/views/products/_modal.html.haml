@@ -2,16 +2,16 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %h5#exampleModalLabel.modal-title Delete Products
+        %h5#confirmPopupLabel.modal-title Delete Products
         %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", type: "button"}
       .modal-body
-        - if many
+        - if more_products
           Are you sure you want to delete selected products?
         - else
           Are you sure you want to delete the product?
       .modal-footer
         %button.btn.btn-secondary{"data-bs-dismiss" => "modal", type: "button"} Close
-        - if many
+        - if more_products
           %button.btn.btn-danger{type: "button", id:"delete-products", onclick:"deleteProducts();"} Delete
         - else
           = link_to 'Delete', product_path(@product), method: :delete, class: 'btn btn-danger'
