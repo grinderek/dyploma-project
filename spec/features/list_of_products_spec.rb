@@ -23,6 +23,7 @@ RSpec.feature 'List of products', type: :feature do
       click_button 'Delete Products'
       click_button('Delete', exact: true)
       expect(page).to_not have_selector('#check_1')
+      expect(page).to have_selector('#check_11')
     end.to change { Product.count }.by(-1)
   end
 
