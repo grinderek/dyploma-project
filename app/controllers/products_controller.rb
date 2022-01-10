@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :product, only: %i[edit update show destroy]
+  before_action :product, only: %i[edit update show]
   before_action :pagination, only: %i[index]
   skip_forgery_protection
 
@@ -35,7 +35,8 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
+    @products = ProductFinder.search(id: params[:id].split('-'))
+    @products.destroy_all
     redirect_to products_path, status: 303
   end
 
