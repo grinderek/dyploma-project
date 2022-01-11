@@ -3,15 +3,14 @@
 class ProductsController < ApplicationController
   before_action :product, only: %i[edit update show]
   before_action :pagination, only: %i[admin_index index]
+  before_action :order_item, only: %i[index show]
   skip_forgery_protection
 
   def admin_index
     render 'products/index'
   end
 
-  def index
-    @order_item = current_order.order_items.new
-  end
+  def index; end
 
   def new
     @product = Product.new
@@ -50,6 +49,10 @@ class ProductsController < ApplicationController
 
   def product
     @product = ProductFinder.search(id: params[:id]).first
+  end
+
+  def order_item
+    @order_item = current_order.order_items.new
   end
 
   def pagination
