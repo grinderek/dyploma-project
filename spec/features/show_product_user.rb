@@ -5,7 +5,8 @@ require 'rails_helper'
 RSpec.feature 'Show product[User]', type: :feature do
   before(:each) do
     build_list(:product, 11, &:save)
-    visit user_product_index_path
+    @product = Product.last
+    visit user_product_path(@product)
   end
 
   scenario 'Number of products should be hide when equal to 0' do
@@ -13,12 +14,7 @@ RSpec.feature 'Show product[User]', type: :feature do
   end
 
   scenario 'After add product show count of products' do
-    find('#add_1').click
+    find('input[name="commit"]').click
     expect(page).to have_selector('#count_of_products')
-  end
-
-  scenario 'Go to different page' do
-    click_link('2', exact: true)
-    expect(page).to have_selector('#product_11')
   end
 end
