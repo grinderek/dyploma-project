@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'List of products[User]', type: :feature do
   before(:each) do
-    build_list(:product, 11, &:save)
+    create_list(:product, 11)
     visit user_product_index_path
   end
 
