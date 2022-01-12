@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get '/products', to: 'products#admin_index'
   end
 
+  get 'cart', to: 'cart#show'
   resources :cart_items
   resources :products, only: %i[index show], as: 'user_product'
   scope :active_storage, module: :active_storage, as: :active_storage do
