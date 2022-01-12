@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Cart < ApplicationRecord
-  has_many :cart_items
+  has_many :cart_items, dependent: :destroy
   before_save :set_subtotal
 
   def subtotal
