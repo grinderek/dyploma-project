@@ -3,7 +3,7 @@
 class ProductsController < ApplicationController
   before_action :product, only: %i[edit update show]
   before_action :pagination, only: %i[admin_index index]
-  before_action :order_item, only: %i[index show]
+  before_action :cart_item, only: %i[index show]
   before_action :previous_page, only: %i[index show]
   skip_forgery_protection
 
@@ -52,8 +52,8 @@ class ProductsController < ApplicationController
     @product = ProductFinder.search(id: params[:id]).first
   end
 
-  def order_item
-    @order_item = current_order.order_items.new
+  def cart_item
+    @cart_item = current_cart.cart_items.new
   end
 
   def pagination

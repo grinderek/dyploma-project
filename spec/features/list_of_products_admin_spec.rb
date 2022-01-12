@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'List of products[Admin]', type: :feature do
   before(:each) do
-    build_list(:product, 11, &:save)
+    create_list(:product, 11)
     visit products_path
   end
 

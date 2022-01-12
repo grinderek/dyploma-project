@@ -40,19 +40,19 @@ ActiveRecord::Schema.define(version: 2022_01_08_095547) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "order_items", force: :cascade do |t|
+  create_table "cart_items", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "product_id", null: false
-    t.bigint "order_id", null: false
+    t.bigint "cart_id", null: false
     t.integer "total"
     t.integer "unit_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_id"], name: "index_order_items_on_order_id"
-    t.index ["product_id"], name: "index_order_items_on_product_id"
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["product_id"], name: "index_cart_items_on_product_id"
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "carts", force: :cascade do |t|
     t.integer "subtotal"
     t.integer "total"
     t.datetime "created_at", precision: 6, null: false
@@ -70,6 +70,6 @@ ActiveRecord::Schema.define(version: 2022_01_08_095547) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "order_items", "orders"
-  add_foreign_key "order_items", "products"
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "products"
 end

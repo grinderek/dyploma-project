@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateOrders < ActiveRecord::Migration[6.0]
+class CreateCarts < ActiveRecord::Migration[6.0]
   def change
-    create_table :orders do |t|
+    create_table :carts do |t|
       t.integer :subtotal
       t.integer :total
 
