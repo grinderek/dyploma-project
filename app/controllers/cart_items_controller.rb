@@ -26,6 +26,12 @@ class CartItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @cart_item = @cart.cart_items.find(params[:id])
+    @cart_item.destroy
+    redirect_to session[:previous_page], status: 302
+  end
+
   private
 
   def cart_params
