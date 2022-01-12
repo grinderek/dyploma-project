@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @products = ProductFinder.search(id: params[:id].split('-'))
+    @products = ProductFinder.search(id: params[:id])
     @products.destroy_all
     redirect_to products_path, status: 303
   end

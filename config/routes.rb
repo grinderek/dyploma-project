@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   scope '/admin' do
     get '/', to: 'welcome#index'
+    delete '/products' => 'products#destroy'
     resources :products
   end
 
