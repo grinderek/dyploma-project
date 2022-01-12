@@ -42,7 +42,7 @@
               - else
                 = link_to 'View product', user_product_path(product), class: 'btn btn-outline-info me-2'
                 - if current_order.order_items.where(product_id: product.id).empty?
-                  = bootstrap_form_with model: @order_item do |f|
+                  = bootstrap_form_with model: @cart_item do |f|
                     = f.hidden_field :product_id, value: product.id
                     = f.hidden_field :quantity, value: 1
                     = f.submit "Add To Cart", class: 'btn btn-outline-primary', id: "add_#{product.id}"

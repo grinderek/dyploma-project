@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @order_item = current_order.order_items.new
+    @cart_item = current_cart.cart_items.new
   end
 
   def new

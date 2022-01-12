@@ -6,11 +6,11 @@ module ApplicationHelper
     url.include?('/admin')
   end
 
-  def current_order
-    if Order.find_by_id(session[:order_id]).nil?
-      Order.new
+  def current_cart
+    if Cart.find_by_id(session[:cart_id]).nil?
+      Cart.new
     else
-      Order.find_by_id(session[:order_id])
+      Cart.find_by_id(session[:cart_id])
     end
   end
 end

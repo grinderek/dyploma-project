@@ -2,7 +2,7 @@
 
 class CreateOrders < ActiveRecord::Migration[6.0]
   def change
-    create_table :orders do |t|
+    create_table :carts do |t|
       t.integer :subtotal
       t.integer :total
 
