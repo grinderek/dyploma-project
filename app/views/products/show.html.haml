@@ -20,16 +20,16 @@
         Delete Product
       = link_to 'Edit product', edit_product_path(@product), class: 'btn btn-outline-primary', data: {turbolinks: false}
     - else
-      - if current_order.order_items.where(product_id: @product.id).empty?
-        = bootstrap_form_with model: @order_item do |f|
+      - if current_cart.cart_items.where(product_id: @product.id).empty?
+        = bootstrap_form_with model: @cart_item do |f|
           = f.hidden_field :product_id, value: @product.id
           = f.hidden_field :quantity, value: 1
           = f.submit "Add To Cart", class: 'btn btn-outline-primary btn-lg', id: "add_#{@product.id}"
       - else
-        = bootstrap_form_with model: current_order.order_items.where(product_id: @product.id).first do |f|
+        = bootstrap_form_with model: current_cart.cart_items.where(product_id: @product.id).first do |f|
           = f.hidden_field :product_id, value: @product.id
           = f.hidden_field :quantity,
-                        value: current_order.order_items.where(product_id: @product.id).first.quantity + 1
+                        value: current_cart.cart_items.where(product_id: @product.id).first.quantity + 1
           = f.submit "Add To Cart", class: 'btn btn-outline-primary btn-lg', id: "add_#{@product.id}"
   %div
     %h3

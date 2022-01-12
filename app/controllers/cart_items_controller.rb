@@ -9,7 +9,7 @@ class CartItemsController < ApplicationController
       flash[:notice] = "The #{ProductFinder.search(id: @cart_item.product_id).first.name}
                         was successfully added to the cart"
       session[:cart_id] = @cart.id
-      redirect_to user_product_index_path
+      redirect_to session[:previous_page]
     else
       render 'products/index'
     end
@@ -20,7 +20,7 @@ class CartItemsController < ApplicationController
     if @cart_item.update(cart_params)
       flash[:notice] = "The #{ProductFinder.search(id: @cart_item.product_id).first.name}
                         was successfully added to the cart"
-      redirect_to user_product_index_path
+      redirect_to session[:previous_page]
     else
       render 'products/index'
     end
