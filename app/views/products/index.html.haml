@@ -31,7 +31,7 @@
           %td
             = product.code
           %td
-            = product.price
+            = number_to_currency(product.price)
           %td
             .d-flex
               - if check_if_admin?
