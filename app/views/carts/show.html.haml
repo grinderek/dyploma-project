@@ -43,13 +43,13 @@
                       = f.submit "Increase product amount", class: 'btn btn-outline-primary me-3', id: "add_#{item.product.id}"
                     = link_to "Remove product", item, method: :delete, class: 'btn btn-outline-danger', id: "del_#{item.product.id}"
 
-.row
-  .col
-    = link_to "Checkout", '#', class: 'btn btn-lg btn-outline-primary', id: "checkout"
-  .col
-    .mb-4.float-end
-      %span.fw-bold
-        Total price:
-      = current_cart.subtotal
-      $
+  .row
+    .col
+      = link_to "Checkout", '#', class: 'btn btn-lg btn-outline-primary', id: "checkout"
+    .col
+      .mb-4.float-end
+        %span.fw-bold
+          Total price:
+        = current_cart.subtotal
+        $
 
