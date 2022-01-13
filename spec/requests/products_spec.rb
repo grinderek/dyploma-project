@@ -60,13 +60,35 @@ RSpec.describe 'Products', type: :request do
       delete "/admin/products/#{@product.id}"
     end
 
-    it 'should return status 302(Redirect to /admin)' do
-      expect(response.status).to eq 302
+    it 'should return status 303(Redirect to /admin)' do
+      expect(response.status).to eq 303
     end
 
     it 'should delete the product' do
       expect(Product.all.size).to eq 1
       expect(Product.all.first).to eq @product2
+    end
+  end
+
+  describe 'GET /products' do
+    before(:each) do
+      10.times do
+        @product = build(:product)
+        @product.save
+      end
+      @product = build(:product)
+      @product.save
+      get products_path
+    end
+
+    it 'should contain pagination when more count than 10 products' do
+      expect(response.body).to include 'class="pagination"'
+    end
+
+    it 'shouldn\'t contain pagination when count less or equal 10 products' do
+      delete "/admin/products/#{@product.id}"
+      get products_path
+      expect(response.body).to_not include 'class="pagination"'
     end
   end
 end

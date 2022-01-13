@@ -1,1 +1,51 @@
 @import "~bootstrap";
+
+.flickr_pagination {
+  text-align: center;
+  padding: 0.3em;
+  cursor: default;
+
+  a, span, em {
+    padding: 0.2em 0.5em;
+    border-radius: 5px;
+  }
+
+  .disabled {
+    color: #aaaaaa;
+  }
+
+  .current {
+    font-style: normal;
+    font-weight: bold;
+    color: black;
+  }
+
+  a {
+    border: 1px solid #3d3434;
+    color: #3d3434;
+    text-decoration: none;
+
+    &:hover, &:focus {
+      border-color: gray;
+      background: #3d3434;
+      color: gray;
+    }
+  }
+
+  .page_info {
+    color: #aaaaaa;
+    padding-top: 0.8em;
+  }
+
+  .previous_page, .next_page {
+    border-width: 2px;
+  }
+
+  .previous_page {
+    margin-right: 1em;
+  }
+
+  .next_page {
+    margin-left: 1em;
+  }
+}
