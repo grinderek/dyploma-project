@@ -15,7 +15,7 @@ class CartItem < ApplicationRecord
   end
 
   def total
-    unit_price * quantity
+    product.price * quantity
   end
 
   private
