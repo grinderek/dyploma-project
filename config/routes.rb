@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get '/', to: 'welcome#index'
     resources :products, except: [:index]
     get '/products', to: 'products#admin_index'
+    delete '/products' => 'products#destroy'
   end
 
   get 'cart', to: 'carts#show'
