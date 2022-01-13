@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   before_action :previous_page, only: %i[index show]
   skip_forgery_protection
 
-  MAX_PAGE = (Product.count / 10.0).ceil
+  PER_PAGE = 10
 
   def admin_index
     render 'products/index'
@@ -59,10 +59,11 @@ class ProductsController < ApplicationController
   end
 
   def pagination
-    @products = if params[:page].nil? || params[:page].to_i <= MAX_PAGE
-      Product.paginate(page: params[:page], per_page: 10)
+    max_page = (Product.count / 10.0).ceil
+    @products = if params[:page].nil? || params[:page].to_i <= max_page
+      Product.paginate(page: params[:page], per_page: PER_PAGE)
     else
-      Product.paginate(page: MAX_PAGE.to_s, per_page: 10)
+      Product.paginate(page: max_page.to_s, per_page: PER_PAGE)
     end
   end
 

@@ -12,7 +12,7 @@
       = image_tag 'placeholder.jpg', class: "img-fluid card-img-top mh-100 mb-4"
   .col-6
     %h3
-      = @product.price
+      = number_to_currency(@product.price)
       $
     - if check_if_admin?
       %button.btn.btn-outline-danger{"data-bs-target" => "#confirmPopup",
