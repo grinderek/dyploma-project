@@ -34,13 +34,12 @@
             = product.price
           %td
             .d-flex
+              = link_to 'View product',
+                check_if_admin? ? product_path(product) : user_product_path(product),
+                class: 'btn btn-outline-primary me-2'
               - if check_if_admin?
-                = link_to 'View product', product_path(product), class: 'btn btn-outline-primary me-3',
-                          data: { turbolinks: false }
-                = link_to 'Edit product', edit_product_path(product), class: 'btn btn-outline-warning',
-                          data: { turbolinks: false }
+                = link_to 'Edit product', edit_product_path(product), class: 'btn btn-outline-warning'
               - else
-                = link_to 'View product', user_product_path(product), class: 'btn btn-outline-info me-2'
                 = render 'add_to_cart', product: product
 
 .row
