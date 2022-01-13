@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     delete '/products' => 'products#destroy'
   end
 
-  resources :cart_items
+  resources :cart_items, only: %i[create update]
   resources :products, only: %i[index show], as: 'user_product'
   scope :active_storage, module: :active_storage, as: :active_storage do
     resources :attachments, only: [:destroy]
