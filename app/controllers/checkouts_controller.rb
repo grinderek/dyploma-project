@@ -2,5 +2,7 @@
 
 class CheckoutsController < ApplicationController
 
-  def new; end
+  def new
+    @checkout = Checkout.new
+  end
 end

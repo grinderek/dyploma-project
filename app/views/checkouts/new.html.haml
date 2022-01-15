@@ -29,3 +29,17 @@
             %td{id: "count_#{item.product.id}"}
               = item.quantity
 
+.container
+  .row.justify-content-center
+    .col-10
+      = bootstrap_form_with model: @checkout, class: "shadow p-3 mb-3 bg-info rounded", local: true do |f|
+        = f.text_field :name, placeholder: "Your name"
+        = f.email_field :email, placeholder: "e.g. example@gmail.com"
+        .row
+          .col
+            = f.form_group :delivery, label: { text: "Delivery" } do
+              = f.radio_button :delivery, "Self-pickup", checked: true
+              = f.radio_button :delivery, "Delivery address"
+          .col
+        = f.hidden_field :cart_id, value: current_cart.id
+        = f.submit class: "btn btn-outline-light btn-lg"
