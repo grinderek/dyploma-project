@@ -37,9 +37,9 @@
         = f.email_field :email, placeholder: "e.g. example@gmail.com"
         .row
           .col
-            = f.form_group :delivery, label: { text: "Delivery" } do
-              = f.radio_button :delivery, "Self-pickup", checked: true
-              = f.radio_button :delivery, "Delivery address"
+            = f.form_group :delivery, label: { text: "What is your preferred delivery method?" } do
+              = f.radio_button :delivery, "Self-pickup", checked: true, inline: true
+              = f.radio_button :delivery, "Delivery address", inline: true
           .col
         = f.hidden_field :cart_id, value: current_cart.id
         = f.submit class: "btn btn-outline-light btn-lg"
