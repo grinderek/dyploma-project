@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'Show product[User]', type: :feature do
   before(:each) do
-    build_list(:product, 11, &:save)
+    create_list(:product, 11)
     @product = Product.last
     visit user_product_path(@product)
     find('input[name="commit"]').click
@@ -12,6 +12,8 @@ RSpec.feature 'Show product[User]', type: :feature do
   end
 
   scenario 'After add product show count of products' do
-    expect(page).to have_selector('#count_of_products')
+    expect do
+      find('input[name="commit"]').click
+    end.to change { current_cart.cart_items.first.quantity }.by(1)
   end
 end
