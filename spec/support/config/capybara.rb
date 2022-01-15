@@ -14,4 +14,5 @@ RSpec.configure do |config|
   config.after(:each) do
     Capybara.use_default_driver
   end
+  config.include ApplicationHelper
 end
