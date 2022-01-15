@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'Show product[User]', type: :feature do
   before(:each) do
-    build_list(:product, 11, &:save)
+    create_list(:product, 11)
     @product = Product.last
     visit user_product_path(@product)
   end
