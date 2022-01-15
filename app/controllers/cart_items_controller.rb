@@ -7,7 +7,7 @@ class CartItemsController < ApplicationController
     @cart_item = @cart.cart_items.new(cart_params)
     if @cart.save
       flash[:notice] = "The #{ProductFinder.search(id: @cart_item.product_id).first.name}
-                        was successfully added to the carts"
+                        was successfully added to the cart"
       session[:cart_id] = @cart.id
       redirect_to session[:previous_page]
     else
@@ -19,7 +19,7 @@ class CartItemsController < ApplicationController
     @cart_item = @cart.cart_items.find(params[:id])
     if @cart_item.update(cart_params)
       flash[:notice] = "The #{ProductFinder.search(id: @cart_item.product_id).first.name}
-                        was successfully added to the carts"
+                        was successfully added to the cart"
       redirect_to session[:previous_page]
     else
       render 'products/index'
