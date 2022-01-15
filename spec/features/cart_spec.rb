@@ -11,9 +11,8 @@ RSpec.feature 'Show product[User]', type: :feature do
     visit cart_path
   end
 
-  scenario 'After add product show count of products' do
-    expect do
-      find('input[name="commit"]').click
-    end.to change { current_cart.cart_items.first.quantity }.by(1)
+  scenario 'Increase product count' do
+    find('input[name="commit"]').click
+    expect(page).to have_selector('#count_11', text: '2')
   end
 end

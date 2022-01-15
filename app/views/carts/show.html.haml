@@ -32,7 +32,7 @@
                   = item.product.code
                 %td
                   = number_to_currency(item.total)
-                %td
+                %td{id: "count_#{item.product.id}"}
                   = item.quantity
                 %td
                   .d-flex
