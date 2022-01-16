@@ -40,7 +40,7 @@
               - if check_if_admin?
                 = link_to 'Edit product', edit_product_path(product), class: 'btn btn-outline-warning'
               - else
-                = render 'add_to_cart', product: product
+                = button_to 'Add to cart', add_to_cart_path(product), class: 'btn btn-outline-primary'
 
 .row
   .col

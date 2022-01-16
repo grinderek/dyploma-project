@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-class CartItem < ApplicationRecord
-  belongs_to :product
-  belongs_to :cart
+class CartItem
+  attr_accessor :product_id, :quantity
+
+  def initialize(product_id, quantity)
+    @product_id = product_id
+    @quantity = quantity
+  end
 end

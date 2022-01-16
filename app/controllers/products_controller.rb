@@ -7,13 +7,24 @@ class ProductsController < ApplicationController
 
   MAX_PAGE = (Product.count / 10.0).ceil
 
+  def add_to_cart
+    id = params[:id].to_i
+    cart_item = CartItem.new(id, 1)
+    product = ProductFinder.search(id: id).first
+    if current_cart.items.any? { |item| item.product_id == cart_item.product_id }
+      flash[:notice] = "The #{product.name} already in the cart"
+    else
+      current_cart.items << cart_item unless current_cart.items.any? { |item| item.product_id == cart_item.product_id }
+      flash[:notice] = "The #{product.name} was successfully added to the cart"
+    end
+    redirect_to user_product_index_path
+  end
+
   def admin_index
     render 'products/index'
   end
 
-  def index
-    @cart_item = current_cart.cart_items.new
-  end
+  def index; end
 
   def new
     @product = Product.new
