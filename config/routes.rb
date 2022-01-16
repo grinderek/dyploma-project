@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :cart_items, only: %i[create update]
   resources :products, only: %i[index show], as: 'user_product'
+  post 'products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
+
   scope :active_storage, module: :active_storage, as: :active_storage do
     resources :attachments, only: [:destroy]
   end
