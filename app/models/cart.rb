@@ -3,7 +3,7 @@
 class Cart
   attr_accessor :items
 
-  def initialize(params = {})
+  def initialize(params = { 'items' => {} })
     params = { 'items' => {} } if params.nil?
     @items = []
     params['items'].each do |key, _value|
