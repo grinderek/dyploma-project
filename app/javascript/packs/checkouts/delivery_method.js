@@ -12,11 +12,9 @@ window.checkDefault = () => {
 window.$('input:radio[name="checkout[delivery]"]').change(
     function() {
         if ($(this).attr('id') === 'checkout_delivery_delivery_address') {
-            console.log(1)
             $("#address_section").css('display', 'block')
             $("#address_field").val('')
         } else {
-            console.log(2)
             $("#address_section").css('display', 'none')
             $("#address_field").val('Address of your company')
         }
