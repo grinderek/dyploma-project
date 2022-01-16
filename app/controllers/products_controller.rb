@@ -66,7 +66,6 @@ class ProductsController < ApplicationController
     @product = ProductFinder.search(id: params[:id]).first
   end
 
-
   def pagination
     max_page = (Product.count / 10.0).ceil
     @products = if params[:page].nil? || params[:page].to_i <= max_page
