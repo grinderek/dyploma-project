@@ -19,6 +19,6 @@ class CheckoutsController < ApplicationController
   private
 
   def checkout_params
-    params.require(:checkout).permit(:name, :email, :delivery, :cart_id)
+    params.require(:checkout).permit(:name, :email, :delivery, :cart_id, :address)
   end
 end

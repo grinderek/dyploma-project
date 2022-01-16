@@ -34,12 +34,14 @@
     .col-10
       = bootstrap_form_with model: @checkout, class: "shadow p-3 mb-3 bg-info rounded", local: true do |f|
         = f.text_field :name, placeholder: "Your name"
-        = f.email_field :email, placeholder: "e.g. example@gmail.com"
+        = f.text_field :email, placeholder: "e.g. example@gmail.com"
         .row
           .col
             = f.form_group :delivery, label: { text: "What is your preferred delivery method?" } do
-              = f.radio_button :delivery, "Self-pickup", checked: true, inline: true
-              = f.radio_button :delivery, "Delivery address", inline: true
-          .col
+              = f.radio_button :delivery, "Self-pickup",
+                checked: @checkout.delivery == 'Self-pickup' || @checkout.delivery == nil
+              = f.radio_button :delivery, "Delivery address", checked: @checkout.delivery == 'Delivery address'
+          .col{ id: 'address_section' }
+            = f.text_field :address, id: 'address_field'
         = f.hidden_field :cart_id, value: current_cart.id
         = f.submit class: "btn btn-outline-light btn-lg"
