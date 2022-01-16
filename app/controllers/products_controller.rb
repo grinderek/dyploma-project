@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
       current_cart.items << cart_item unless current_cart.items.any? { |item| item.product_id == cart_item.product_id }
       flash[:notice] = "The #{product.name} was successfully added to the cart"
     end
-    redirect_to user_product_index_path
+    redirect_to session[:previous_page]
   end
 
   def admin_index
