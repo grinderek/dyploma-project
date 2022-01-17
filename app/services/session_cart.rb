@@ -7,8 +7,10 @@ class SessionCart
     params = { 'items' => {} } if params.nil?
     @items = []
     params['items'].each do |key, _value|
-      cart_item = SessionCartItem.new(key['product_id'], key['quantity'])
-      @items.push(cart_item)
+      unless ProductFinder.search(id: key['product_id']).empty?
+        cart_item = SessionCartItem.new(key['product_id'], key['quantity'])
+        @items.push(cart_item)
+      end
     end
   end
 end
