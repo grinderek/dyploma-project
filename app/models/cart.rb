@@ -8,7 +8,7 @@ class Cart
     @items = []
     params['items'].each do |key, _value|
       cart_item = CartItem.new(key['product_id'], key['quantity'])
-      @items << cart_item
+      @items.push(cart_item)
     end
   end
 end

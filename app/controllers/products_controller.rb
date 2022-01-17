@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
     cart_item = CartItem.new(id, 1)
     product = ProductFinder.search(id: id).first
     if current_cart.items.any? { |item| item.product_id == cart_item.product_id }
-      flash[:notice] = "The #{product.name} already in the cart"
+      flash[:warning] = "The #{product.name} is already in the cart"
     else
       current_cart.items << cart_item unless current_cart.items.any? { |item| item.product_id == cart_item.product_id }
       flash[:notice] = "The #{product.name} was successfully added to the cart"
