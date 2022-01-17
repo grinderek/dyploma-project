@@ -21,6 +21,21 @@ class ProductsController < ApplicationController
     redirect_to session[:previous_page]
   end
 
+  def update_cart
+    id = params[:id].to_i
+    session[:cart].items.map! do |item|
+      item.quantity = item.quantity + 1 if item.product_id == id
+      item
+    end
+    redirect_to cart_path
+  end
+
+  def remove_from_cart
+    id = params[:id].to_i
+    session[:cart].items.reject! { |item| item.product_id == id }
+    redirect_to cart_path
+  end
+
   def admin_index
     render 'products/index'
   end
