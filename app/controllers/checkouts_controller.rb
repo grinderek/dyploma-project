@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class CheckoutsController < ApplicationController
-
+  
   def new
+    @cart_items = PageCart.new(session[:cart])
     @checkout = Checkout.new
   end
 
