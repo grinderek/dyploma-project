@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
-class Cart < ApplicationRecord
-  has_many :cart_items, dependent: :destroy
-  before_save :set_subtotal
+class Cart
+  attr_accessor :items
 
-  def subtotal
-    cart_items.sum { |cart_item| cart_item.valid? ? cart_item.product.price * cart_item.quantity : 0 }
-  end
-
-  private
-
-  def set_subtotal
-    self[:subtotal] = subtotal
+  def initialize(params = { 'items' => {} })
+    params = { 'items' => {} } if params.nil?
+    @items = []
+    params['items'].each do |key, _value|
+      cart_item = CartItem.new(key['product_id'], key['quantity'])
+      @items.push(cart_item)
+    end
   end
 end

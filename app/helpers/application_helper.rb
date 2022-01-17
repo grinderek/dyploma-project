@@ -7,10 +7,6 @@ module ApplicationHelper
   end
 
   def current_cart
-    if Cart.find_by_id(session[:cart_id]).nil?
-      Cart.new
-    else
-      Cart.find_by_id(session[:cart_id])
-    end
+    session[:cart]
   end
 end

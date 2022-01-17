@@ -1,17 +1,10 @@
 # frozen_string_literal: true
 
-class CartItem < ApplicationRecord
-  belongs_to :product
-  belongs_to :cart
-  before_save :set_total
+class CartItem
+  attr_accessor :product_id, :quantity
 
-  def total
-    product.price * quantity
-  end
-
-  private
-
-  def set_total
-    self[:total] = total * quantity
+  def initialize(product_id, quantity)
+    @product_id = product_id
+    @quantity = quantity
   end
 end
