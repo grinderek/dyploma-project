@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_session
-    session[:cart] = Cart.new(session[:cart])
+    session[:cart] = SessionCart.new(session[:cart])
   end
 end

@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 
   def add_to_cart
     id = params[:id].to_i
-    cart_item = CartItem.new(id, 1)
+    cart_item = SessionCartItem.new(id, 1)
     product = ProductFinder.search(id: id).first
     if current_cart.items.any? { |item| item.product_id == cart_item.product_id }
       flash[:warning] = "The #{product.name} is already in the cart"

@@ -7,11 +7,11 @@ class PageCart
     @items = []
     session_cart.items.each do |item|
       product = ProductFinder.search(id: item.product_id).first
-      @items.push(product: product, quantity: item.quantity)
+      @items.push(PageCartItem.new(product, item.quantity))
     end
   end
 
   def total
-    @items.inject(0) { |sum, item| sum + (item[:product].price * item[:quantity]) }
+    @items.inject(0) { |sum, item| sum + (item.product.price * item.quantity) }
   end
 end

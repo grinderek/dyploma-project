@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CartItem
+class SessionCartItem
   attr_accessor :product_id, :quantity
 
   def initialize(product_id, quantity)
