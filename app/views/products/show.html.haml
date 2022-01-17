@@ -20,7 +20,8 @@
         Delete Product
       = link_to 'Edit product', edit_product_path(@product), class: 'btn btn-outline-primary', data: {turbolinks: false}
     - else
-      = render 'add_to_cart', product: @product
+      = button_to 'Add to cart', add_to_cart_path(@product), class: 'btn btn-outline-primary',
+                  id: "add_#{@product.id}"
   %div
     %h3
       Description
