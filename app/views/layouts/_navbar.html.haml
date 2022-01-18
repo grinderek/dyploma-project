@@ -1,0 +1,22 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container-fluid
+    %a.navbar-brand{href: "#"} Navbar
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", type: "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      - if check_if_admin?
+        %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+          %li.nav-item
+            = link_to 'Create products', new_product_path, class: 'nav-link'
+          %li.nav-item
+            = link_to 'View products', products_path, class: 'nav-link'
+      - else
+        %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+          %li.nav-item
+            = link_to 'View products', user_product_index_path, class: 'nav-link'
+        .d-flex
+          = link_to '#', class: 'nav-link' do
+            %i.fa.fa-shopping-cart
+            - if current_cart.items.count != 0
+              %span{id: "count_of_products"}
+                = current_cart.items.count

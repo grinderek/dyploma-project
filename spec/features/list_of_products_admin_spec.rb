@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'List of products', type: :feature do
+RSpec.feature 'List of products[Admin]', type: :feature do
   before(:each) do
     create_list(:product, 11)
     visit products_path

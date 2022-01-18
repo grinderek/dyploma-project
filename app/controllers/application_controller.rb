@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  helper_method :check_if_admin?
+  include ApplicationHelper
+  before_action :initialize_session
 
   private
 
-  def check_if_admin?
-    url = request.path_info
-    url.include?('/admin')
+  def initialize_session
+    session[:cart] = Cart.new(session[:cart])
   end
 end

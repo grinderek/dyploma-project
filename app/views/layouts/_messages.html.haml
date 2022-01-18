@@ -1,0 +1,5 @@
+.container
+  - flash.each do |name, msg|
+    %div{class: "alert alert-#{name == "notice" ? "success" : "danger"} alert-dismissible fade show", role: "alert"}
+      = msg
+      %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", type: "button"}

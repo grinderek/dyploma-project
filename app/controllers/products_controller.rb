@@ -2,10 +2,27 @@
 
 class ProductsController < ApplicationController
   before_action :product, only: %i[edit update show]
-  before_action :pagination, only: %i[index]
+  before_action :pagination, only: %i[admin_index index]
   skip_forgery_protection
 
   MAX_PAGE = (Product.count / 10.0).ceil
+
+  def add_to_cart
+    id = params[:id].to_i
+    cart_item = CartItem.new(id, 1)
+    product = ProductFinder.search(id: id).first
+    if current_cart.items.any? { |item| item.product_id == cart_item.product_id }
+      flash[:warning] = "The #{product.name} is already in the cart"
+    else
+      current_cart.items << cart_item unless current_cart.items.any? { |item| item.product_id == cart_item.product_id }
+      flash[:notice] = "The #{product.name} was successfully added to the cart"
+    end
+    redirect_to user_product_index_path
+  end
+
+  def admin_index
+    render 'products/index'
+  end
 
   def index; end
 

@@ -2,8 +2,9 @@
   %table.table.table-striped
     %thead
       %tr
-        %th
-          = check_box_tag('check_all', 'check_all', false, onClick: "checkAll(this);")
+        -if check_if_admin?
+          %th
+            = check_box_tag('check_all', 'check_all', false, onClick: "checkAll(this);")
         %th
           Name
         %th
@@ -16,9 +17,10 @@
           Actions
     %tbody
       - @products.each do |product|
-        %tr
-          %td
-            = check_box_tag("check_#{product.id}", "check_#{product.id}", false, onClick: "checkOne(this);")
+        %tr{id: "product_#{product.id}"}
+          -if check_if_admin?
+            %td
+              = check_box_tag("check_#{product.id}", "check_#{product.id}", false, onClick: "checkOne(this);")
           %td
             = product.name
           %td
@@ -31,19 +33,28 @@
           %td
             = product.price
           %td
-            = link_to 'View product', product_path(product), class: 'btn btn-outline-primary me-3',
-            data: {turbolinks: false}
-            = link_to 'Edit product', edit_product_path(product), class: 'btn btn-outline-warning',
-            data: {turbolinks: false}
+            .d-flex
+              = link_to 'View product',
+                check_if_admin? ? product_path(product) : user_product_path(product),
+                class: 'btn btn-outline-primary me-2'
+              - if check_if_admin?
+                = link_to 'Edit product', edit_product_path(product), class: 'btn btn-outline-warning'
+              - else
+                = button_to 'Add to cart', add_to_cart_path(product), class: 'btn btn-outline-primary',
+                  id: "add_#{product.id}"
 
 .row
   .col
-    %button.btn.btn-lg.btn-outline-danger{"data-bs-target" => "#confirmPopup", "data-bs-toggle" => "modal",
-    type: "button", id: 'delete_product', disabled: true}
-      Delete Products
+    -if check_if_admin?
+      %button.btn.btn-lg.btn-outline-danger{"data-bs-target" => "#confirmPopup", "data-bs-toggle" => "modal",
+      type: "button", id: 'delete_product', disabled: true}
+        Delete Products
   .col
     .flickr_pagination.mb-4.float-end
-      = will_paginate @products
+      - if check_if_admin?
+        = will_paginate @products
+      - else
+        = will_paginate(@products, :params => { :controller => user_product_index_path })
 
 = render 'modal', more_products: true
 
