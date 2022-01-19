@@ -24,29 +24,37 @@ RSpec.describe 'Products', type: :request do
   describe 'GET /products/:id' do
     it 'renders a successful response' do
       subject.save
-      get product_url(subject)
+      get product_path(subject)
+      expect(response).to be_successful
+      get user_product_path(subject)
       expect(response).to be_successful
     end
 
     it 'show empty if description empty' do
       subject.description = nil
       subject.save
-      get product_url(subject)
+      get product_path(subject)
+      expect(response.body).to include 'Empty'
+      get user_product_path(subject)
       expect(response.body).to include 'Empty'
     end
 
     it 'show placeholder if image not attached' do
       subject.save
       subject.image.purge
-      get product_url(subject)
+      get product_path(subject)
       expect(subject.image.attached?).to_not be_truthy
+      expect(response.body).to include '/assets/placeholder'
+      get user_product_path(subject)
       expect(response.body).to include '/assets/placeholder'
     end
 
     it 'show image if attached' do
       subject.save
-      get product_url(subject)
+      get product_path(subject)
       expect(subject.image.attached?).to be_truthy
+      expect(response.body).to include 'active_storage/blobs/redirect/'
+      get user_product_path(subject)
       expect(response.body).to include 'active_storage/blobs/redirect/'
     end
   end
