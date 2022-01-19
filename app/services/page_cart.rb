@@ -12,6 +12,6 @@ class PageCart
   end
 
   def total
-    @items.inject(0) { |sum, item| sum + (item.product.price * item.quantity) }
+    @items.inject(0) { |sum, item| sum + item.total_item_price }
   end
 end

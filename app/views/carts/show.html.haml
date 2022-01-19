@@ -17,6 +17,8 @@
           %th
             Amount
           %th
+            Total price
+          %th
             Actions
           %tbody
             - @cart_items.items.each do |item|
@@ -34,6 +36,8 @@
                   = number_to_currency(item.product.price)
                 %td{id: "count_#{item.product.id}"}
                   = item.quantity
+                %td
+                  = number_to_currency(item.total_item_price)
                 %td
                   .d-flex
                     = button_to 'Increase product amount', update_cart_path(item.product),
