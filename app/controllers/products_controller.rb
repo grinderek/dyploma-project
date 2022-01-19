@@ -3,7 +3,6 @@
 class ProductsController < ApplicationController
   before_action :product, only: %i[edit update show]
   before_action :pagination, only: %i[admin_index index]
-  before_action :previous_page, only: %i[index show]
   skip_forgery_protection
 
   PER_PAGE = 10
@@ -18,7 +17,7 @@ class ProductsController < ApplicationController
       current_cart.items << cart_item unless current_cart.items.any? { |item| item.product_id == cart_item.product_id }
       flash[:notice] = "The #{product.name} was successfully added to the cart"
     end
-    redirect_to session[:previous_page]
+    redirect_to user_product_index_path
   end
 
   def update_cart
@@ -82,7 +81,7 @@ class ProductsController < ApplicationController
   end
 
   def pagination
-    max_page = (Product.count / 10.0).ceil
+    max_page = (1.0 * Product.count / PER_PAGE).ceil
     @products = if params[:page].nil? || params[:page].to_i <= max_page
       Product.paginate(page: params[:page], per_page: PER_PAGE)
     else
