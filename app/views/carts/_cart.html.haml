@@ -14,7 +14,7 @@
           Amount
         %th
           Total price
-        - if cart_page
+        - if is_cart_page
           %th
             Actions
         %tbody
@@ -35,10 +35,14 @@
                 = item.quantity
               %td
                 = number_to_currency(item.total_item_price)
-              - if cart_page
+              - if is_cart_page
                 %td
                   .d-flex
                     = button_to 'Increase product amount', update_cart_path(item.product),
                         class: 'btn btn-outline-primary me-2', id: "add_#{item.product.id}"
                     = link_to 'Remove product', remove_from_cart_path(item.product), method: :delete,
                         class: 'btn btn-outline-danger', id: "del_#{item.product.id}"
+.mb-4.float-end
+  %span.fw-bold
+    Total price:
+  = number_to_currency(@cart_items.total)
