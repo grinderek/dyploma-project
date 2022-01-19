@@ -7,7 +7,6 @@ class CreateCheckouts < ActiveRecord::Migration[6.1]
       t.string :email
       t.string :delivery
       t.string :address
-      t.references :cart, null: false, foreign_key: true
 
       t.timestamps
     end
