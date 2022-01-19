@@ -42,7 +42,6 @@
                         class: 'btn btn-outline-primary me-2', id: "add_#{item.product.id}"
                     = link_to 'Remove product', remove_from_cart_path(item.product), method: :delete,
                         class: 'btn btn-outline-danger', id: "del_#{item.product.id}"
-.mb-4.float-end
-  %span.fw-bold
-    Total price:
-  = number_to_currency(@cart_items.total)
+%span.fw-bold
+  Total price:
+= number_to_currency(@cart_items.total)
