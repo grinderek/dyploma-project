@@ -1,46 +1,21 @@
-.table-responsive
-  %table.table.table-striped
-    %thead
-      %tr
-        %th
-          Name
-        %th
-          Image
-        %th
-          Vendor code
-        %th
-          Price
-        %th
-          Amount
-      %tbody
-        - @cart_items.items.each do |item|
-          %tr{id: "product_#{item.product.id}"}
-            %td
-              = item.product.name
-            %td
-              -if item.product.image.attached? && item.product.image.persisted?
-                = image_tag item.product.image, size: "100x100", class: "img-fluid"
-              -else
-                = image_tag 'placeholder.jpg', size: "100x100", class: "img-fluid"
-            %td
-              = item.product.code
-            %td
-              = number_to_currency(item.product.price)
-            %td{id: "count_#{item.product.id}"}
-              = item.quantity
+- if @cart_items.items.count == 0
+  %h1
+    The cart is empty
+- else
+  = render 'carts/cart', cart_page: false
 
-.container
-  .row.justify-content-center
-    .col-10
-      = bootstrap_form_with model: @checkout, class: "shadow p-3 mb-3 bg-info rounded", local: true do |f|
-        = f.text_field :name, placeholder: "Your name"
-        = f.text_field :email, placeholder: "e.g. example@gmail.com"
-        .row
-          .col
-            = f.form_group :delivery, label: { text: "What is your preferred delivery method?" } do
-              = f.radio_button :delivery, "Self-pickup",
-                checked: @checkout.delivery == 'Self-pickup' || @checkout.delivery == nil
-              = f.radio_button :delivery, "Delivery address", checked: @checkout.delivery == 'Delivery address'
-          .col{ id: 'address_section' }
-            = f.text_field :address, id: 'address_field'
-        = f.submit class: "btn btn-outline-light btn-lg"
+  .container
+    .row.justify-content-center
+      .col-10
+        = bootstrap_form_with model: @checkout, class: "shadow p-3 mb-3 bg-info rounded", local: true do |f|
+          = f.text_field :name, placeholder: "Your name"
+          = f.text_field :email, placeholder: "e.g. example@gmail.com"
+          .row
+            .col
+              = f.form_group :delivery, label: { text: "What is your preferred delivery method?" } do
+                = f.radio_button :delivery, "Self-pickup",
+                  checked: @checkout.delivery == 'Self-pickup' || @checkout.delivery == nil
+                = f.radio_button :delivery, "Delivery address", checked: @checkout.delivery == 'Delivery address'
+            .col{ id: 'address_section' }
+              = f.text_field :address, id: 'address_field'
+          = f.submit class: "btn btn-outline-light btn-lg"

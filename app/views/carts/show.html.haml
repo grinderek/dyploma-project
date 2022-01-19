@@ -2,48 +2,7 @@
   %h1
     The cart is empty
 - else
-  .table-responsive
-    %table.table.table-striped
-      %thead
-        %tr
-          %th
-            Name
-          %th
-            Image
-          %th
-            Vendor code
-          %th
-            Price
-          %th
-            Amount
-          %th
-            Total price
-          %th
-            Actions
-          %tbody
-            - @cart_items.items.each do |item|
-              %tr{id: "product_#{item.product.id}"}
-                %td
-                  = item.product.name
-                %td
-                  -if item.product.image.attached? && item.product.image.persisted?
-                    = image_tag item.product.image, size: "100x100", class: "img-fluid"
-                  -else
-                    = image_tag 'placeholder.jpg', size: "100x100", class: "img-fluid"
-                %td
-                  = item.product.code
-                %td
-                  = number_to_currency(item.product.price)
-                %td{id: "count_#{item.product.id}"}
-                  = item.quantity
-                %td
-                  = number_to_currency(item.total_item_price)
-                %td
-                  .d-flex
-                    = button_to 'Increase product amount', update_cart_path(item.product),
-                      class: 'btn btn-outline-primary me-2', id: "add_#{item.product.id}"
-                    = link_to 'Remove product', remove_from_cart_path(item.product), method: :delete,
-                      class: 'btn btn-outline-danger', id: "del_#{item.product.id}"
+  = render 'cart', cart_page: true
 
   .row
     .col
