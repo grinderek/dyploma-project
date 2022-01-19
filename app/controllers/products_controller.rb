@@ -66,7 +66,7 @@ class ProductsController < ApplicationController
   end
 
   def pagination
-    max_page = (1.0 * Product.count / PER_PAGE).ceil
+    max_page = (Product.count / PER_PAGE.to_f).ceil
     @products = if params[:page].nil? || params[:page].to_i <= max_page
       Product.paginate(page: params[:page], per_page: PER_PAGE)
     else
