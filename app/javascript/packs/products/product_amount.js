@@ -1,35 +1,40 @@
-update_quantity = async (id) => {
-    await fetch(window.location.origin + `/admin/products?id[]=${inputs}`, {
-        method: "DELETE"
+window.update_quantity = (id, quantity) => {
+    $.ajax({
+        type: 'POST',
+        url: `/cart/update_cart/${id}`,
+        data: { quantity: quantity }
     })
 }
 
-incrementValue = (e) => {
-    e.preventDefault();
-    const fieldName = $(e.target).data('field');
-    const parent = $(e.target).closest('div');
-    const currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-    console.log(parent[0].id)
+window.incrementValue = (e) => {
+    e.preventDefault()
+    const fieldName = $(e.target).data('field')
+    const parent = $(e.target).closest('div')
+    let currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10)
     if (!isNaN(currentVal)) {
-        parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+        currentVal += 1
     } else {
-        parent.find('input[name=' + fieldName + ']').val(1);
+        currentVal = 1
     }
+    parent.find('input[name=' + fieldName + ']').val(currentVal);
 
-    func(parent[0].id.substr(6))
+    update_quantity(parent[0].id.substr(6), currentVal)
 }
 
-decrementValue = (e) => {
+window.decrementValue = (e) => {
     e.preventDefault();
     const fieldName = $(e.target).data('field');
     const parent = $(e.target).closest('div');
-    const currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+    let currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
 
     if (!isNaN(currentVal) && currentVal > 1) {
-        parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+        currentVal -= 1
     } else {
-        parent.find('input[name=' + fieldName + ']').val(1);
+        currentVal = 1
     }
+    parent.find('input[name=' + fieldName + ']').val(currentVal);
+
+    update_quantity(parent[0].id.substr(6), currentVal)
 }
 
 window.$('.input-group').on('click', '.button-plus', (e) => {

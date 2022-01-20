@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'cart', to: 'cart#show'
   resources :products, only: %i[index show], as: 'user_product'
   post 'cart/add_to_cart/:id', to: 'cart#add_to_cart', as: 'add_to_cart'
-  post 'cart/update_cart/:id', to: 'cart#update_cart', as: 'update_cart'
+  post 'cart/update_cart/:id', to: 'cart#update', as: 'update_cart'
   delete 'cart/remove_from_cart/:id', to: 'cart#remove_from_cart', as: 'remove_from_cart'
 
   scope :active_storage, module: :active_storage, as: :active_storage do
