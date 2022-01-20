@@ -1,61 +1,63 @@
-- if @cart_items.items.count == 0
-  %h1
-    The cart is empty
-- else
-  .table-responsive
-    %table.table.table-striped
-      %thead
-        %tr
-          %th
-            Name
-          %th
-            Image
-          %th
-            Vendor code
-          %th
-            Price
-          %th
-            Amount
-          %th
-            Total price
-          %th
-            Actions
-          %tbody
-            - @cart_items.items.each do |item|
-              %tr{id: "product_#{item.product.id}"}
-                %td
-                  = item.product.name
-                %td
-                  -if item.product.image.attached? && item.product.image.persisted?
-                    = image_tag item.product.image, size: "100x100", class: "img-fluid"
-                  -else
-                    = image_tag 'placeholder.jpg', size: "100x100", class: "img-fluid"
-                %td
-                  = item.product.code
-                %td
-                  = number_to_currency(item.product.price)
-                %td
-                  .input-group{id: "count_#{item.product.id}"}
-                    %input.button-minus{"data-field" => "quantity", type: "button", value: "-"}
-                    %input.quantity-field{ max: "", name: "quantity", step: "1", type: "number",
-                                           value: "#{ item.quantity }" }
-                    %input.button-plus{"data-field" => "quantity", type: "button", value: "+"}
-                %td{id: "total_price_#{item.product.id}"}
-                  = number_to_currency(item.total_item_price)
-                %td
-                  .d-flex
-                    %button.btn.btn-outline-danger{ type: "button", id:"delete-products",
-                                                    onclick:"remove_from_cart(#{item.product.id});" }
-                      Remove product
+%div{id: "cart_page"}
+  - if @cart_items.items.count == 0
+    %h1
+      The cart is empty
+  - else
+    %div{id: "cart"}
+    .table-responsive
+      %table.table.table-striped
+        %thead
+          %tr
+            %th
+              Name
+            %th
+              Image
+            %th
+              Vendor code
+            %th
+              Price
+            %th
+              Amount
+            %th
+              Total price
+            %th
+              Actions
+            %tbody
+              - @cart_items.items.each do |item|
+                %tr{id: "product_#{item.product.id}"}
+                  %td
+                    = item.product.name
+                  %td
+                    -if item.product.image.attached? && item.product.image.persisted?
+                      = image_tag item.product.image, size: "100x100", class: "img-fluid"
+                    -else
+                      = image_tag 'placeholder.jpg', size: "100x100", class: "img-fluid"
+                  %td
+                    = item.product.code
+                  %td
+                    = number_to_currency(item.product.price)
+                  %td
+                    .input-group{id: "count_#{item.product.id}"}
+                      %input.button-minus{"data-field" => "quantity", type: "button", value: "-"}
+                      %input.quantity-field{ max: "", name: "quantity", step: "1", type: "number",
+                                             value: "#{ item.quantity }" }
+                      %input.button-plus{"data-field" => "quantity", type: "button", value: "+"}
+                  %td{id: "total_price_#{item.product.id}"}
+                    = number_to_currency(item.total_item_price)
+                  %td
+                    .d-flex
+                      %button.btn.btn-outline-danger{ type: "button", id:"delete-products",
+                                                      onclick:"remove_from_cart(#{item.product.id});" }
+                        Remove product
 
-  .row
-    .col
-      = link_to "Checkout", '#', class: 'btn btn-lg btn-outline-primary', id: "checkout"
-    .col
-      .mb-4.float-end
-        %span.fw-bold
-          Total price:
-        %div{id: "total_price"}
-          = number_to_currency(@cart_items.total)
+    .row
+      .col
+        = link_to "Checkout", '#', class: 'btn btn-lg btn-outline-primary', id: "checkout"
+      .col
+        .mb-4.float-end
+          %span.fw-bold
+            Total price:
+          %div{id: "total_price"}
+            = number_to_currency(@cart_items.total)
 
 
