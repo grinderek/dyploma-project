@@ -16,7 +16,7 @@ window.incrementValue = (e) => {
     } else {
         currentVal = 1
     }
-    parent.find('input[name=' + fieldName + ']').val(currentVal);
+    parent.find('input[name=' + fieldName + ']').val(currentVal)
 
     update_quantity(parent[0].id.substr(6), currentVal)
 }
@@ -32,15 +32,35 @@ window.decrementValue = (e) => {
     } else {
         currentVal = 1
     }
-    parent.find('input[name=' + fieldName + ']').val(currentVal);
+    parent.find('input[name=' + fieldName + ']').val(currentVal)
 
     update_quantity(parent[0].id.substr(6), currentVal)
 }
 
+window.changeValue = (e) => {
+    e.preventDefault();
+    const field = e.target;
+    let currentVal = parseInt(`${field.value}`, 10);
+
+    if (isNaN(currentVal) || currentVal < 1) {
+        currentVal = 1
+    } else if (currentVal > 99) {
+        currentVal = 99
+    }
+    field.value = currentVal
+
+    update_quantity(field.id.substr(7), currentVal)
+}
+
+window.$('.input-group').on('change', '.quantity-field', (e) => {
+    console.log('kuku')
+    changeValue(e)
+})
+
 window.$('.input-group').on('click', '.button-plus', (e) => {
-    incrementValue(e);
-});
+    incrementValue(e)
+})
 
 window.$('.input-group').on('click', '.button-minus', (e) => {
-    decrementValue(e);
-});
+    decrementValue(e)
+})
