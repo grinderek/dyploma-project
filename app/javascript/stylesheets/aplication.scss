@@ -50,64 +50,55 @@
   }
 }
 
-input,
-textarea {
+input {
   border: 1px solid #eeeeee;
   box-sizing: border-box;
   margin: 0;
   outline: none;
   padding: 10px;
-}
 
-input[type="button"] {
-  -webkit-appearance: button;
-  cursor: pointer;
-}
+  &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+  &[type="button"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+  }
 }
 
 .input-group {
   clear: both;
   margin: 0;
   position: relative;
-}
 
-.input-group input[type='button'] {
-  background-color: #eeeeee;
-  min-width: 38px;
-  width: auto;
-  transition: all 300ms ease;
-}
+  input[type='button'] {
+    background-color: #eeeeee;
+    width: 25%;
+    transition: all 300ms ease;
+  }
 
-.input-group .button-minus,
-.input-group .button-plus {
-  font-weight: bold;
-  height: 38px;
-  padding: 0;
-  width: 38px;
-  position: relative;
-}
+  .button-minus, .button-plus {
+    font-weight: bold;
+    padding: 7px;
+    margin: 0;
+    position: relative;
+  }
 
-.input-group .quantity-field {
-  position: relative;
-  height: 38px;
-  left: -6px;
-  text-align: center;
-  width: 62px;
-  display: inline-block;
-  font-size: 13px;
-  margin: 0 0 5px;
-  resize: vertical;
-}
-
-.button-plus {
-  left: -13px;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
-  -webkit-appearance: none;
+  .quantity-field {
+    position: relative;
+    text-align: center;
+    width: 50%;
+    min-width: 20px;
+    max-width: 100px;
+    display: inline-block;
+    font-size: min(max(1.25vw, 8px), 13px);
+    margin: 0;
+    resize: vertical;
+  }
 }

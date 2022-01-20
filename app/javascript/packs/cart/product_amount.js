@@ -53,7 +53,6 @@ window.changeValue = (e) => {
 }
 
 window.$('.input-group').on('change', '.quantity-field', (e) => {
-    console.log('kuku')
     changeValue(e)
 })
 
