@@ -44,8 +44,9 @@
                   = number_to_currency(item.total_item_price)
                 %td
                   .d-flex
-                    = link_to 'Remove product', remove_from_cart_path(item.product), method: :delete,
-                      class: 'btn btn-outline-danger', id: "del_#{item.product.id}"
+                    %button.btn.btn-outline-danger{ type: "button", id:"delete-products",
+                                                    onclick:"remove_from_cart(#{item.product.id});" }
+                      Remove product
 
   .row
     .col
