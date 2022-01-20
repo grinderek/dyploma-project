@@ -3,6 +3,12 @@
     The cart is empty
 - else
   = render 'cart', is_cart_page: true
-  = link_to "Checkout", new_checkout_path, class: 'btn btn-lg btn-outline-primary float-end', id: "checkout"
-
+  .row
+    .col
+      = link_to "Checkout", new_checkout_path, class: 'btn btn-lg btn-outline-primary', id: "checkout"
+    .col
+      .mb-4.float-end
+        %span.fw-bold
+          Total price:
+        = number_to_currency(@cart_items.total)
 
