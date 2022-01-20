@@ -34,8 +34,8 @@
                   = item.product.code
                 %td
                   = number_to_currency(item.product.price)
-                %td{id: "count_#{item.product.id}"}
-                  .input-group
+                %td
+                  .input-group{id: "count_#{item.product.id}"}
                     %input.button-minus{"data-field" => "quantity", type: "button", value: "-"}
                     %input.quantity-field{ max: "", name: "quantity", step: "1", type: "number",
                                            value: "#{ item.quantity }" }
