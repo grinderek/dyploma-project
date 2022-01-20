@@ -1,8 +1,8 @@
-function incrementValue(e) {
+incrementValue = (e) => {
     e.preventDefault();
-    var fieldName = $(e.target).data('field');
-    var parent = $(e.target).closest('div');
-    var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+    const fieldName = $(e.target).data('field');
+    const parent = $(e.target).closest('div');
+    const currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
 
     if (!isNaN(currentVal)) {
         parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
@@ -11,11 +11,11 @@ function incrementValue(e) {
     }
 }
 
-function decrementValue(e) {
+decrementValue = (e) => {
     e.preventDefault();
-    var fieldName = $(e.target).data('field');
-    var parent = $(e.target).closest('div');
-    var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+    const fieldName = $(e.target).data('field');
+    const parent = $(e.target).closest('div');
+    const currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
 
     if (!isNaN(currentVal) && currentVal > 1) {
         parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
@@ -24,10 +24,10 @@ function decrementValue(e) {
     }
 }
 
-window.$('.input-group').on('click', '.button-plus', function(e) {
+window.$('.input-group').on('click', '.button-plus', (e) => {
     incrementValue(e);
 });
 
-window.$('.input-group').on('click', '.button-minus', function(e) {
+window.$('.input-group').on('click', '.button-minus', (e) => {
     decrementValue(e);
 });
