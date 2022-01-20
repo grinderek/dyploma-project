@@ -40,8 +40,9 @@
                     .input-group{id: "count_#{item.product.id}"}
                       %input.button-minus{"data-field" => "quantity", type: "button", value: "-"}
                       %input.quantity-field{ max: "", name: "quantity", step: "1", type: "number",
-                                             value: "#{ item.quantity }" }
-                      %input.button-plus{"data-field" => "quantity", type: "button", value: "+"}
+                                             value: "#{ item.quantity }", id: "number_#{item.product.id}"}
+                      %input.button-plus{ "data-field" => "quantity", type: "button", value: "+",
+                                          id:"add_#{item.product.id}" }
                   %td{id: "total_price_#{item.product.id}"}
                     = number_to_currency(item.total_item_price)
                   %td

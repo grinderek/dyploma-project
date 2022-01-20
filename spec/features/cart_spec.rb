@@ -20,11 +20,11 @@ RSpec.feature 'Cart[User]', type: :feature do
     expect(page).to have_selector('#product_11')
   end
 
-  scenario 'Increase product count' do
+  scenario 'Increase product count', :js do
     visit user_product_path(@product)
     find('#add_11').click
     visit cart_path
     find('#add_11').click
-    expect(page).to have_selector('#count_11', text: '2')
+    expect(page).to have_field('quantity', with: '2')
   end
 end
