@@ -3,6 +3,6 @@
 class PromoCodesController < ApplicationController
 
   def new
-    @promocode = PromoCode.new
+    @promo_code = PromoCode.new
   end
 end
