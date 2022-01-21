@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   scope '/admin' do
     get '/', to: 'welcome#index'
     resources :products, except: [:index]
+    resources :promo_codes, only: %i[new create]
     get '/products', to: 'products#admin_index'
     delete '/products' => 'products#destroy'
   end
