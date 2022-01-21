@@ -20,7 +20,7 @@
               .col{ id: 'address_section' }
                 = f.text_field :address, id: 'address_field'
             = f.submit class: "btn btn-outline-light btn-lg"
-    .col-3
+    .col-4
       .container
         .justify-content-center
           = bootstrap_form_with model: @checkout, class: "shadow p-3 mb-3 mt-3 bg-info rounded", local: true do |f|
