@@ -69,3 +69,14 @@ en:
             address:
               blank: 'This field is required'
               too_short: 'Min characters for this field is 20'
+        promo_code:
+          attributes:
+            code:
+              blank: 'This field is required'
+              taken: 'This code was already taken'
+            percent:
+              blank: 'This field is required'
+              not_a_number: 'Only numbers are allowed'
+              less_than_or_equal_to: 'Number should be in range 1..100'
+              greater_than_or_equal_to: 'Number should be in range 1..100'
+              not_an_integer: 'Number should be an integer'
