@@ -32,7 +32,7 @@ gem 'haml'
 gem 'image_processing', '~> 1.2'
 gem 'jquery-rails'
 gem 'simplecov', require: false, group: :test
-gem "valid_email2"
+gem 'valid_email2'
 gem 'will_paginate', '~> 3.3'
 
 # Reduces boot times through caching; required in config/boot.rb

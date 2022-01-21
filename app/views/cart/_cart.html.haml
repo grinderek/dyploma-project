@@ -31,14 +31,22 @@
                 = item.product.code
               %td
                 = number_to_currency(item.product.price)
-              %td{id: "count_#{item.product.id}"}
-                = item.quantity
-              %td
+              - if is_cart_page
+                %td
+                  .input-group{id: "count_#{item.product.id}"}
+                    %input.button-minus{"data-field" => "quantity", type: "button", value: "-"}
+                    %input.quantity-field{ max: "", name: "quantity", step: "1", type: "number",
+                                               value: "#{ item.quantity }", id: "number_#{item.product.id}"}
+                    %input.button-plus{ "data-field" => "quantity", type: "button", value: "+",
+                                            id:"add_#{item.product.id}" }
+              - else
+                %td{id: "count_#{item.product.id}"}
+                  = item.quantity
+              %td{id: "total_price_#{item.product.id}"}
                 = number_to_currency(item.total_item_price)
               - if is_cart_page
                 %td
                   .d-flex
-                    = button_to 'Increase product amount', update_cart_path(item.product),
-                        class: 'btn btn-outline-primary me-2', id: "add_#{item.product.id}"
-                    = link_to 'Remove product', remove_from_cart_path(item.product), method: :delete,
-                        class: 'btn btn-outline-danger', id: "del_#{item.product.id}"
+                    %button.btn.btn-outline-danger{ type: "button", id:"delete-products",
+                                                      onclick:"remove_from_cart(#{item.product.id});" }
+                      Remove product
