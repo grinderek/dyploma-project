@@ -9,12 +9,12 @@ Rails.application.routes.draw do
     delete '/products' => 'products#destroy'
   end
 
-  get 'cart', to: 'carts#show'
   resources :checkouts, only: %i[new create]
+  get 'cart', to: 'cart#show'
   resources :products, only: %i[index show], as: 'user_product'
-  post 'products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
-  post 'products/update_cart/:id', to: 'products#update_cart', as: 'update_cart'
-  delete 'products/remove_from_cart/:id', to: 'products#remove_from_cart', as: 'remove_from_cart'
+  post 'cart/add_to_cart/:id', to: 'cart#add_to_cart', as: 'add_to_cart'
+  post 'cart/update_cart/:id', to: 'cart#update', as: 'update_cart'
+  delete 'cart/remove_from_cart/:id', to: 'cart#remove_from_cart', as: 'remove_from_cart'
 
   scope :active_storage, module: :active_storage, as: :active_storage do
     resources :attachments, only: [:destroy]

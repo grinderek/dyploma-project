@@ -49,3 +49,56 @@
     margin-left: 1em;
   }
 }
+
+input {
+  border: 1px solid #eeeeee;
+  box-sizing: border-box;
+  margin: 0;
+  outline: none;
+  padding: 10px;
+
+  &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  &[type="button"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+  }
+}
+
+.input-group {
+  clear: both;
+  margin: 0;
+  position: relative;
+
+  input[type='button'] {
+    background-color: #eeeeee;
+    width: 25%;
+    transition: all 300ms ease;
+  }
+
+  .button-minus, .button-plus {
+    font-weight: bold;
+    padding: 7px;
+    margin: 0;
+    position: relative;
+  }
+
+  .quantity-field {
+    position: relative;
+    text-align: center;
+    width: 50%;
+    min-width: 20px;
+    max-width: 100px;
+    display: inline-block;
+    font-size: min(max(1.25vw, 8px), 13px);
+    margin: 0;
+    resize: vertical;
+  }
+}

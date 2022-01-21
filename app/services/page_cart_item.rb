@@ -11,5 +11,4 @@ class PageCartItem
   def total_item_price
     @product.price * quantity
   end
-
 end
