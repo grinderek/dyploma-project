@@ -23,7 +23,8 @@
     .col-4
       .container
         .justify-content-center
-          = bootstrap_form_with url: '/discount', class: "shadow p-3 mb-3 mt-3 bg-info rounded", local: false do |f|
+          = bootstrap_form_with url: '/discount',
+                                class: "shadow p-3 mb-3 mt-3 bg-info rounded", id: 'discount', local: false do |f|
             %h4
               %span.fw-bold
                 Total price:

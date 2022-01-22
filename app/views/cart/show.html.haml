@@ -14,5 +14,10 @@
             Total price:
           %span{id: "total_price"}
             = number_to_currency(@cart_items.total)
+          - if @cart_items.discount != 0
+            %span.fw-bold
+              (-
+              = @cart_items.discount
+              \%)
 
 
