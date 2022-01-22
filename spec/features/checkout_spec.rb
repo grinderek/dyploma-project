@@ -30,6 +30,13 @@ RSpec.feature 'Checkout[User]', type: :feature do
     expect(page).to have_content('This field is required')
   end
 
+  scenario 'Confirm promo code', :js do
+    find('#code').set('halyava')
+    find('#submit_promo_code').click
+    expect(page).to_not have_selector('#submit_promo_code')
+    expect(page).to have_content('(- 10 %)')
+  end
+
   scenario 'Show error when promo code not exist', :js do
     find('#code').set('halva')
     find('#submit_promo_code').click
