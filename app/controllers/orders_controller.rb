@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-class CheckoutsController < ApplicationController
+class OrdersController < ApplicationController
   before_action :cart_items, only: %i[new create]
 
   def new
-    @checkout = Checkout.new
+    @order = Order.new
   end
 
   def create
-    @checkout = Checkout.new(checkout_params)
-    if @checkout.save
+    @order = Order.new(checkout_params)
+    if @order.save
       flash[:notice] = 'Your order is accepted'
-      AddProductsToOrder.new(current_cart, @checkout.id).add
+      AddProductsToOrder.new(current_cart, @order.id).add
       session[:cart] = nil
       redirect_to user_product_index_path
     else
@@ -35,6 +35,6 @@ class CheckoutsController < ApplicationController
   end
 
   def checkout_params
-    params.require(:checkout).permit(:name, :email, :delivery, :address, :total)
+    params.require(:order).permit(:name, :email, :delivery, :address, :total)
   end
 end

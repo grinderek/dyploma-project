@@ -10,7 +10,7 @@ class AddProductsToOrder
 
   def add
     @cart.items.each do |item|
-      CheckoutProduct.create(checkout_id: @checkout_id, product_id: item.product_id, quantity: item.quantity)
+      OrderProduct.create(checkout_id: @checkout_id, product_id: item.product_id, quantity: item.quantity)
     end
   end
 end
