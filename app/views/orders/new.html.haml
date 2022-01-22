@@ -20,7 +20,7 @@
                   = f.radio_button :delivery, "Delivery address", checked: @order.delivery == 'Delivery address'
               .col{ id: 'address_section' }
                 = f.text_field :address, id: 'address_field'
-            = f.submit class: "btn btn-outline-light btn-lg", id: 'submit_checkout'
+            = f.submit class: "btn btn-outline-light btn-lg", id: 'submit_order'
     .col-4
       .container
         .justify-content-center

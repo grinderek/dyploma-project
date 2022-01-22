@@ -57,7 +57,7 @@ en:
             image:
               content_type_invalid: 'This format is not allowed. Allowed formats are jpg, jpeg, png'
               file_size_out_of_range: 'File size is too big. Max allowed size is 100 Mb'
-        checkout:
+        order:
           attributes:
             name:
               blank: 'This field is required'

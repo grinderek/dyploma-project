@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post 'cart/add_to_cart/:id', to: 'cart#add_to_cart', as: 'add_to_cart'
   post 'cart/update_cart/:id', to: 'cart#update', as: 'update_cart'
   delete 'cart/remove_from_cart/:id', to: 'cart#remove_from_cart', as: 'remove_from_cart'
-  post 'discount', to: 'checkouts#discount'
+  post 'discount', to: 'orders#discount'
 
   scope :active_storage, module: :active_storage, as: :active_storage do
     resources :attachments, only: [:destroy]

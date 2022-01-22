@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 class AddProductsToOrder
-  attr_accessor :cart, :checkout_id
+  attr_accessor :cart, :order_id
 
-  def initialize(cart, checkout_id)
+  def initialize(cart, order_id)
     @cart = cart
-    @checkout_id = checkout_id
+    @order_id = order_id
   end
 
   def add
     @cart.items.each do |item|
-      OrderProduct.create(checkout_id: @checkout_id, product_id: item.product_id, quantity: item.quantity)
+      OrderProduct.create(order_id: @order_id, product_id: item.product_id, quantity: item.quantity)
     end
   end
 end
