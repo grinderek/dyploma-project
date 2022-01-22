@@ -9,6 +9,7 @@
       .container
         .justify-content-center
           = bootstrap_form_with model: @checkout, class: "shadow p-3 mb-3 mt-3 bg-info rounded", local: true do |f|
+            = f.hidden_field :total, value: @cart_items.total, id: "form_price"
             = f.text_field :name, placeholder: "Your name"
             = f.text_field :email, placeholder: "e.g. example@gmail.com"
             .row

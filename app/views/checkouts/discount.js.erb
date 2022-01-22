@@ -15,4 +15,5 @@
   document.querySelector("#discount_percent").innerHTML = "(- <%= @cart_items.discount %> %)"
   document.querySelector("#discount_percent").hidden = false
   document.querySelector("#confirm_promo").hidden = true
+  document.querySelector("#form_price").value = <%= @cart_items.total %>
 <% end %>
