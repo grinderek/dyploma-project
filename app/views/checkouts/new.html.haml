@@ -23,10 +23,16 @@
     .col-4
       .container
         .justify-content-center
-          = bootstrap_form_with url: '/discount', class: "shadow p-3 mb-3 mt-3 bg-info rounded", local: true do |f|
+          = bootstrap_form_with url: '/discount', class: "shadow p-3 mb-3 mt-3 bg-info rounded", local: false do |f|
             %h4
               %span.fw-bold
                 Total price:
-              = number_to_currency(@cart_items.total)
-            = f.text_field :code, placeholder: "Promo code", label: "Add promo code for discount"
-            = f.submit "Confirm", class: "btn btn-outline-light btn-lg"
+              %span{id: "total_price"}
+                = number_to_currency(@cart_items.total)
+              %div{id: "discount_percent", hidden: @cart_items.discount == 0}
+                (-
+                = @cart_items.discount
+                \%)
+            %div{id: "confirm_promo", hidden: @cart_items.discount != 0}
+              = f.text_field :code, placeholder: "Promo code", label: "Add promo code for discount"
+              = f.submit "Confirm", class: "btn btn-outline-light btn-lg"

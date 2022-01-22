@@ -1,0 +1,8 @@
+<% if @promo_code == [] %>
+  console.log('ok')
+<% else %>
+  document.querySelector("#total_price").innerHTML = "<%= number_to_currency(@cart_items.total) %>"
+  document.querySelector("#discount_percent").innerHTML = "(- <%= @cart_items.discount %> %)"
+  document.querySelector("#discount_percent").hidden = false
+  document.querySelector("#confirm_promo").hidden = true
+<% end %>

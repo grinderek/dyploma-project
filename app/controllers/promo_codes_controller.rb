@@ -19,6 +19,6 @@ class PromoCodesController < ApplicationController
   private
 
   def promo_code_params
-    params.require(:promo_code).permit(:code, :percent)
+    params.require(:discount).permit(:code, :percent)
   end
 end
