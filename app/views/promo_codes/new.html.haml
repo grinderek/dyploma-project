@@ -10,5 +10,9 @@
           .col
             = f.text_field :percent, placeholder: "Number between 1..100", label: "Discount amount(%)"
 
-        = link_to 'Cancel', '/admin', class: "btn btn-outline-light btn-lg", data: { confirm: "Are you sure?" }
+        %button.btn.btn-outline-light.btn-lg{"data-bs-target" => "#confirmPopup",
+          "data-bs-toggle" => "modal", type: "button"}
+          Cancel
         = f.submit class: "btn btn-outline-light btn-lg"
+
+= render 'products/modal', page: 'promo_code'
