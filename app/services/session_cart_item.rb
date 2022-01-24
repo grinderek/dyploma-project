@@ -13,6 +13,6 @@ class SessionCartItem
   end
 
   def total_item_price
-    ProductFinder.search(id: @product_id).first.price * @quantity
+    product.price * @quantity
   end
 end

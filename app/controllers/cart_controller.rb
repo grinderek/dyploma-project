@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CartController < ApplicationController
-
   def add_to_cart
     id = params[:id].to_i
     cart_item = SessionCartItem.new(id, 1)
