@@ -16,7 +16,7 @@ class CartController < ApplicationController
 
   def update
     @id = params[:id].to_i
-    session[:cart].items = session[:cart].items.map! do |item|
+    session[:cart].items = session[:cart].items.map do |item|
       item.quantity = params[:quantity].to_i if item.product_id == @id
       item
     end
