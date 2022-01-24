@@ -7,4 +7,12 @@ class SessionCartItem
     @product_id = product_id
     @quantity = quantity
   end
+
+  def product
+    ProductFinder.search(id: @product_id).first
+  end
+
+  def total_item_price
+    ProductFinder.search(id: @product_id).first.price * @quantity
+  end
 end

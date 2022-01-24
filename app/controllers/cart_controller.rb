@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CartController < ApplicationController
-  before_action :cart_items, only: [:show]
 
   def add_to_cart
     id = params[:id].to_i
@@ -18,12 +17,11 @@ class CartController < ApplicationController
 
   def update
     @id = params[:id].to_i
-    session[:cart].items.map! do |item|
+    session[:cart].items = session[:cart].items.map! do |item|
       item.quantity = params[:quantity].to_i if item.product_id == @id
       item
     end
-    cart_items
-    @item = @cart_items.items.find { |item| item.product.id == @id }
+    @item = current_cart.items.find { |item| item.product_id == @id }
     respond_to do |format|
       format.js
     end
@@ -31,18 +29,11 @@ class CartController < ApplicationController
 
   def remove_from_cart
     @id = params[:id].to_i
-    session[:cart].items.reject! { |item| item.product_id == @id }
-    cart_items
+    session[:cart].items = session[:cart].items.reject { |item| item.product_id == @id }
     respond_to do |format|
       format.js
     end
   end
 
   def show; end
-
-  private
-
-  def cart_items
-    @cart_items = PageCart.new(session[:cart])
-  end
 end
