@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
     @order = Order.new(checkout_params)
     if @order.save
       flash[:notice] = 'Your order is accepted'
-      AddProductsToOrder.new(current_cart, @order.id).add
+      AddProductsToOrderService.new(current_cart, @order.id).add
       session[:cart] = nil
       redirect_to user_product_index_path
     else
