@@ -18,4 +18,7 @@ $(document).ready(() => {
     require('products/show_image')
     require('products/delete_image_button')
     require('products/list_of_products')
+    require('orders/delivery_method')
+    require('cart/product_amount')
+    require('cart/remove_from_cart')
 })

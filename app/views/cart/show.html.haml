@@ -1,0 +1,22 @@
+%div{id: "cart_page"}
+  - if current_cart.items.count == 0
+    %h1
+      The cart is empty
+  - else
+    = render 'cart', is_cart_page: true
+    .row
+      .col
+        = link_to "Checkout", new_order_path, class: 'btn btn-lg btn-outline-primary', id: "checkout"
+      .col
+        .mb-4.float-end
+          %span.fw-bold
+            Total price:
+          %span{id: "total_price"}
+            = number_to_currency(current_cart.total)
+          - if current_cart.discount != 0
+            %span.fw-bold
+              (-
+              = current_cart.discount
+              \%)
+
+
