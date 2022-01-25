@@ -16,7 +16,7 @@ class CartController < ApplicationController
 
   def update
     @id = params[:id].to_i
-    session[:cart].items = session[:cart].items.map do |item|
+    current_cart.items = current_cart.items.map do |item|
       item.quantity = params[:quantity].to_i if item.product_id == @id
       item
     end
@@ -28,7 +28,7 @@ class CartController < ApplicationController
 
   def remove_from_cart
     @id = params[:id].to_i
-    session[:cart].items = session[:cart].items.reject { |item| item.product_id == @id }
+    current_cart.items = current_cart.items.reject { |item| item.product_id == @id }
     respond_to do |format|
       format.js
     end
