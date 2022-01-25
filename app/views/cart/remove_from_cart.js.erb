@@ -1,8 +1,8 @@
 <% if current_cart.items.count == 0 %>
-  document.querySelector("#cart_page").innerHTML = "<h1>The cart is empty</h1>"
-  document.querySelector("#count_of_products").remove()
+  $("#cart_page").html("<h1>The cart is empty</h1>")
+  $("#count_of_products").remove()
 <% else %>
-  document.querySelector("#product_<%= @id %>").remove()
-  document.querySelector("#total_price").innerHTML = "<%= number_to_currency(current_cart.total) %>"
-  document.querySelector("#count_of_products").innerHTML = "<%= current_cart.items.count %>"
+  $("#product_<%= @id %>").remove()
+  $("#total_price").html("<%= number_to_currency(current_cart.total) %>")
+  $("#count_of_products").html("<%= current_cart.items.count %>")
 <% end %>
