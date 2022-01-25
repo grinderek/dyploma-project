@@ -1,19 +1,17 @@
-<% if @promo_code == [] %>
-  document.querySelector("#discount #confirm_promo div.mb-3 input#code").value = ""
-  if (!document.querySelector("#discount #confirm_promo div.mb-3 input#code").classList.contains("is-invalid")) {
+<% if current_cart.discount == 0 %>
+  $("#discount #confirm_promo div.mb-3 input#code").val("")
+  if (!$("#discount #confirm_promo div.mb-3 input#code").hasClass("is-invalid")) {
       const error = document.createElement('div')
       error.classList.add("invalid-feedback")
       error.innerHTML = "Sorry your promo code is incorrect or not valid anymore."
-      console.log(error)
-      document.querySelector("#discount #confirm_promo div.mb-3 input#code").classList.add("is-invalid")
-      document.querySelector("#discount #confirm_promo div.mb-3").appendChild(
+      $("#discount #confirm_promo div.mb-3 input#code").addClass("is-invalid")
+      $("#discount #confirm_promo div.mb-3").append(
           error
       )
   }
 <% else %>
-  document.querySelector("#total_price").innerHTML = "<%= number_to_currency(current_cart.total) %>"
-  document.querySelector("#discount_percent").innerHTML = "(- <%= current_cart.discount %> %)"
-  document.querySelector("#discount_percent").hidden = false
-  document.querySelector("#confirm_promo").hidden = true
-  document.querySelector("#form_price").value = <%= current_cart.total %>
+  $("#total_price").html("<%= number_to_currency(current_cart.total) %>")
+  $("#discount_percent").html("(- <%= current_cart.discount %> %)").attr("hidden", false)
+  $("#confirm_promo").attr("hidden", true)
+  $("#form_price").val("<%= current_cart.total %>")
 <% end %>

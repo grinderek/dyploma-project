@@ -10,17 +10,17 @@
         .justify-content-center
           = bootstrap_form_with model: @order, class: "shadow p-3 mb-3 mt-3 bg-info rounded", local: true do |f|
             = f.hidden_field :total, value: current_cart.total, id: "form_price"
-            = f.text_field :name, placeholder: "Your name"
+            = f.text_field :customer_name, placeholder: "Your name"
             = f.text_field :email, placeholder: "e.g. example@gmail.com"
             .row
               .col
-                = f.form_group :delivery, label: { text: "What is your preferred delivery method?" } do
-                  = f.radio_button :delivery, "Self-pickup",
-                      checked: @order.delivery == 'Self-pickup' || @order.delivery == nil
-                  = f.radio_button :delivery, "Delivery address",
-                      checked: @order.delivery == 'Delivery address'
+                = f.form_group :delivery_method, label: { text: "What is your preferred delivery method?" } do
+                  = f.radio_button :delivery_method, "Self-pickup",
+                      checked: @order.delivery_method == 'Self-pickup' || @order.delivery_method == nil
+                  = f.radio_button :delivery_method, "Delivery address",
+                      checked: @order.delivery_method == 'Delivery address'
               .col{ id: 'address_section' }
-                = f.text_field :address, id: 'address_field'
+                = f.text_field :delivery_address, id: 'address_field'
             = f.submit class: "btn btn-outline-light btn-lg", id: 'submit_order'
     .col-4
       .container

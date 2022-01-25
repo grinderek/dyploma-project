@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-
   def new
     @order = Order.new
   end
@@ -10,7 +9,7 @@ class OrdersController < ApplicationController
     @order = Order.new(checkout_params)
     if @order.save
       flash[:notice] = 'Your order is accepted'
-      AddProductsToOrder.new(current_cart, @order.id).add
+      AddProductsToOrderService.new(current_cart, @order.id).add
       session[:cart] = nil
       redirect_to user_product_index_path
     else
@@ -29,6 +28,6 @@ class OrdersController < ApplicationController
   private
 
   def checkout_params
-    params.require(:order).permit(:name, :email, :delivery, :address, :total)
+    params.require(:order).permit(:customer_name, :email, :delivery_method, :delivery_address, :total)
   end
 end

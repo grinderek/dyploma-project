@@ -59,14 +59,14 @@ en:
               file_size_out_of_range: 'File size is too big. Max allowed size is 100 Mb'
         order:
           attributes:
-            name:
+            customer_name:
               blank: 'This field is required'
               too_short: 'Min characters for this field is 1. Max characters for this field is 20'
               too_long: 'Min characters for this field is 1. Max characters for this field is 20'
             email:
               blank: 'This field is required'
               invalid: 'Your email is in a not correct format'
-            address:
+            delivery_address:
               blank: 'This field is required'
               too_short: 'Min characters for this field is 20'
         promo_code:

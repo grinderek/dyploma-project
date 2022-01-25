@@ -18,7 +18,7 @@ RSpec.feature 'Checkout[User]', type: :feature do
 
   scenario 'Create order with valid params', :js do
     expect do
-      find('#order_name').set(Faker::Name.first_name)
+      find('#order_customer_name').set(Faker::Name.first_name)
       find('#order_email').set(Faker::Internet.email)
       find('#submit_order').click
       expect(page).to have_content('Your order is accepted')
@@ -31,7 +31,7 @@ RSpec.feature 'Checkout[User]', type: :feature do
   end
 
   scenario 'Show error when create order with name longer than 20', :js do
-    find('#order_name').set('a' * 21)
+    find('#order_customer_name').set('a' * 21)
     find('#submit_order').click
     expect(page).to have_content('Min characters for this field is 1. Max characters for this field is 20')
   end
@@ -52,7 +52,7 @@ RSpec.feature 'Checkout[User]', type: :feature do
   end
 
   scenario 'Show error when create order with invalid address', :js do
-    find('#order_delivery_delivery_address').click
+    find('#order_delivery_method_delivery_address').click
     find('#submit_order').click
     expect(page).to have_content('This field is required')
     find('#address_field').set('a')
@@ -63,6 +63,7 @@ RSpec.feature 'Checkout[User]', type: :feature do
     find('#code').set('halyava')
     find('#submit_promo_code').click
     expect(page).to_not have_selector('#submit_promo_code')
+    expect(page).to have_content(ActionController::Base.helpers.number_to_currency(@product.price * 0.9).to_s)
     expect(page).to have_content('(- 10 %)')
   end
 

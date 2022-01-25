@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddProductsToOrder
+class AddProductsToOrderService
   attr_accessor :cart, :order_id
 
   def initialize(cart, order_id)
