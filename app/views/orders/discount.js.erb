@@ -1,4 +1,4 @@
-<% if @promo_code == [] %>
+<% if current_cart.discount == 0 %>
   document.querySelector("#discount #confirm_promo div.mb-3 input#code").value = ""
   if (!document.querySelector("#discount #confirm_promo div.mb-3 input#code").classList.contains("is-invalid")) {
       const error = document.createElement('div')
