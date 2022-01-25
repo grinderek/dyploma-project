@@ -21,13 +21,42 @@ RSpec.feature 'Checkout[User]', type: :feature do
       find('#order_name').set(Faker::Name.first_name)
       find('#order_email').set(Faker::Internet.email)
       find('#submit_order').click
-      expect(page).to have_selector('#product_1')
+      expect(page).to have_content('Your order is accepted')
     end.to change { Order.count }.by(1)
   end
 
-  scenario 'Show errors when create order with invalid params', :js do
+  scenario 'Show errors when create order without any params', :js do
     find('#submit_order').click
     expect(page).to have_content('This field is required')
+  end
+
+  scenario 'Show error when create order with name longer than 20', :js do
+    find('#order_name').set('a' * 21)
+    find('#submit_order').click
+    expect(page).to have_content('Min characters for this field is 1. Max characters for this field is 20')
+  end
+
+  scenario 'Show error when create order with invalid email', :js do
+    find('#order_email').set('asd')
+    find('#submit_order').click
+    expect(page).to have_content('Your email is in a not correct format')
+    find('#order_email').set('asd@')
+    find('#submit_order').click
+    expect(page).to have_content('Your email is in a not correct format')
+    find('#order_email').set('asd@gmail')
+    find('#submit_order').click
+    expect(page).to have_content('Your email is in a not correct format')
+    find('#order_email').set('asd@gmail.')
+    find('#submit_order').click
+    expect(page).to have_content('Your email is in a not correct format')
+  end
+
+  scenario 'Show error when create order with invalid address', :js do
+    find('#order_delivery_delivery_address').click
+    find('#submit_order').click
+    expect(page).to have_content('This field is required')
+    find('#address_field').set('a')
+    expect(page).to have_content('Min characters for this field is 20')
   end
 
   scenario 'Confirm promo code', :js do

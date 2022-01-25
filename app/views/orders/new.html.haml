@@ -17,7 +17,8 @@
                 = f.form_group :delivery, label: { text: "What is your preferred delivery method?" } do
                   = f.radio_button :delivery, "Self-pickup",
                       checked: @order.delivery == 'Self-pickup' || @order.delivery == nil
-                  = f.radio_button :delivery, "Delivery address", checked: @order.delivery == 'Delivery address'
+                  = f.radio_button :delivery, "Delivery address",
+                      checked: @order.delivery == 'Delivery address'
               .col{ id: 'address_section' }
                 = f.text_field :address, id: 'address_field'
             = f.submit class: "btn btn-outline-light btn-lg", id: 'submit_order'
