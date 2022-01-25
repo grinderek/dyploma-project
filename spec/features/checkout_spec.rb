@@ -63,6 +63,7 @@ RSpec.feature 'Checkout[User]', type: :feature do
     find('#code').set('halyava')
     find('#submit_promo_code').click
     expect(page).to_not have_selector('#submit_promo_code')
+    expect(page).to have_content(ActionController::Base.helpers.number_to_currency(@product.price * 0.9).to_s)
     expect(page).to have_content('(- 10 %)')
   end
 
