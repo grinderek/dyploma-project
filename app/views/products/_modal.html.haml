@@ -1,17 +1,25 @@
-#confirmPopup.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", tabindex: "-1"}
+#confirmPopup.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "confirmPopup", tabindex: "-1"}
   .modal-dialog
     .modal-content
       .modal-header
-        %h5#confirmPopupLabel.modal-title Delete Products
+        %h5#confirmPopupLabel.modal-title
+          - if page == 'show' || page == 'index'
+            Delete Products
+          - else
+            Cancel confirm
         %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", type: "button"}
       .modal-body
-        - if more_products
+        - if page == 'index'
           Are you sure you want to delete selected products?
-        - else
+        - elsif page == 'show'
           Are you sure you want to delete the product?
+        - else
+          Are you sure you want to cancel operation?
       .modal-footer
         %button.btn.btn-secondary{"data-bs-dismiss" => "modal", type: "button"} Close
-        - if more_products
+        - if page == 'index'
           %button.btn.btn-danger{type: "button", id:"delete-products", onclick:"deleteProducts();"} Delete
-        - else
+        - elsif page == 'show'
           = link_to 'Delete', product_path(@product), method: :delete, class: 'btn btn-danger'
+        - else
+          = link_to 'Confirm', products_path, class: 'btn btn-primary'

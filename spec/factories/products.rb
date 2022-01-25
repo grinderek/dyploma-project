@@ -9,7 +9,7 @@ FactoryBot.define do
 
     after(:build) do |product|
       product.image.attach(
-        io: Down.download(Faker::Avatar.image(format: 'jpg')),
+        io: Down.download(Faker::LoremFlickr.image),
         filename: Faker::File.file_name(ext: 'jpg'),
       )
     end

@@ -56,4 +56,27 @@ en:
               too_long: 'Min characters for this field is 1. Max characters for this field is 5000'
             image:
               content_type_invalid: 'This format is not allowed. Allowed formats are jpg, jpeg, png'
-              file_size_out_of_range: 'File size is too big. Max allowed size is 100 Mb.'
+              file_size_out_of_range: 'File size is too big. Max allowed size is 100 Mb'
+        order:
+          attributes:
+            customer_name:
+              blank: 'This field is required'
+              too_short: 'Min characters for this field is 1. Max characters for this field is 20'
+              too_long: 'Min characters for this field is 1. Max characters for this field is 20'
+            email:
+              blank: 'This field is required'
+              invalid: 'Your email is in a not correct format'
+            delivery_address:
+              blank: 'This field is required'
+              too_short: 'Min characters for this field is 20'
+        promo_code:
+          attributes:
+            code:
+              blank: 'This field is required'
+              taken: 'This code was already taken'
+            percent:
+              blank: 'This field is required'
+              not_a_number: 'Only numbers are allowed'
+              less_than_or_equal_to: 'Number should be in range 1..100'
+              greater_than_or_equal_to: 'Number should be in range 1..100'
+              not_an_integer: 'Number should be an integer'
