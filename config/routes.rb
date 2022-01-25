@@ -9,10 +9,10 @@ Rails.application.routes.draw do
     get '/products', to: 'products#admin_index'
     delete '/products' => 'products#destroy'
   end
-
+  
   resources :orders, only: %i[new create]
+  resource :cart, controller: 'cart', only: [:show]
   resources :products, only: %i[index show], as: 'user_product'
-  get 'cart', to: 'cart#show'
   post 'cart/add_to_cart/:id', to: 'cart#add_to_cart', as: 'add_to_cart'
   post 'cart/update_cart/:id', to: 'cart#update', as: 'update_cart'
   delete 'cart/remove_from_cart/:id', to: 'cart#remove_from_cart', as: 'remove_from_cart'
