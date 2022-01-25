@@ -17,6 +17,12 @@ RSpec.feature 'List of products[User]', type: :feature do
     expect(page).to have_selector('#count_of_products')
   end
 
+  scenario 'After trying to add same product show error' do
+    find('#add_1').click
+    find('#add_1').click
+    expect(page).to have_content("The #{Product.first.name} is already in the cart")
+  end
+
   scenario 'Go to different page' do
     click_link('2', exact: true)
     expect(page).to have_selector('#product_11')
