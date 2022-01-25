@@ -1,4 +1,4 @@
-- if @cart_items.items.count == 0
+- if current_cart.items.count == 0
   %h1
     The cart is empty
 - else
@@ -9,7 +9,7 @@
       .container
         .justify-content-center
           = bootstrap_form_with model: @order, class: "shadow p-3 mb-3 mt-3 bg-info rounded", local: true do |f|
-            = f.hidden_field :total, value: @cart_items.total, id: "form_price"
+            = f.hidden_field :total, value: current_cart.total, id: "form_price"
             = f.text_field :name, placeholder: "Your name"
             = f.text_field :email, placeholder: "e.g. example@gmail.com"
             .row
@@ -30,11 +30,11 @@
               %span.fw-bold
                 Total price:
               %span{id: "total_price"}
-                = number_to_currency(@cart_items.total)
-              %div{id: "discount_percent", hidden: @cart_items.discount == 0}
+                = number_to_currency(current_cart.total)
+              %div{id: "discount_percent", hidden: current_cart.discount == 0}
                 (-
-                = @cart_items.discount
+                = current_cart.discount
                 \%)
-            %div{id: "confirm_promo", hidden: @cart_items.discount != 0}
+            %div{id: "confirm_promo", hidden: current_cart.discount != 0}
               = f.text_field :code, placeholder: "Promo code", label: "Add promo code for discount"
               = f.submit "Confirm", class: "btn btn-outline-light btn-lg", id: "submit_promo_code"

@@ -14,4 +14,8 @@ class SessionCart
     end
     @discount = params['discount'].nil? ? 0 : params['discount']
   end
+
+  def total
+    @items.inject(0) { |sum, item| sum + item.total_item_price } * (1 - (@discount / 100.0))
+  end
 end

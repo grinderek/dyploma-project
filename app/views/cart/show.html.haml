@@ -1,10 +1,9 @@
 %div{id: "cart_page"}
-  - if @cart_items.items.count == 0
+  - if current_cart.items.count == 0
     %h1
       The cart is empty
   - else
     = render 'cart', is_cart_page: true
-
     .row
       .col
         = link_to "Checkout", new_order_path, class: 'btn btn-lg btn-outline-primary', id: "checkout"
@@ -13,11 +12,11 @@
           %span.fw-bold
             Total price:
           %span{id: "total_price"}
-            = number_to_currency(@cart_items.total)
-          - if @cart_items.discount != 0
+            = number_to_currency(current_cart.total)
+          - if current_cart.discount != 0
             %span.fw-bold
               (-
-              = @cart_items.discount
+              = current_cart.discount
               \%)
 
 
