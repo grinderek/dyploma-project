@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     delete '/products' => 'products#destroy'
   end
 
-  get 'cart', to: 'cart#show'
+  resource :cart, controller: 'cart', only: [:show]
   resources :products, only: %i[index show], as: 'user_product'
   post 'cart/add_to_cart/:id', to: 'cart#add_to_cart', as: 'add_to_cart'
   post 'cart/update_cart/:id', to: 'cart#update', as: 'update_cart'
