@@ -10,7 +10,6 @@ class Product < ApplicationRecord
   validates :description, length: { maximum: 5000 }
 
   def delete_image(delete_image_flag)
-    byebug
     return unless delete_image_flag == 'true' && image.attached?
 
     @attachment = ActiveStorage::Attachment.find(image.id)
