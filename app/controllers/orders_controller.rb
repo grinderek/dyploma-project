@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
 
   def pagination
     max_page = (Order.count / PER_PAGE.to_f).ceil
-    @products = if params[:page].nil? || params[:page].to_i <= max_page
+    @orders = if params[:page].nil? || params[:page].to_i <= max_page
       Order.paginate(page: params[:page], per_page: PER_PAGE)
     else
       Order.paginate(page: max_page.to_s, per_page: PER_PAGE)

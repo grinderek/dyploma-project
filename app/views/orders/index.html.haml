@@ -1,0 +1,35 @@
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          ID of order
+        %th
+          Email
+        %th
+          Name
+        %th
+          Total price
+        %th
+          Delivery method
+        %th
+          Actions
+        %tbody
+          - @orders.each do |order|
+            %tr{id: "order_#{order.id}"}
+              %td
+                = order.id
+              %td
+                = order.email
+              %td
+                = order.customer_name
+              %td
+                = number_to_currency(order.total)
+              %td{id: "delivery_#{order.id}"}
+                = order.delivery_method
+                - if order.delivery_method == 'Delivery address'
+                  (
+                  = order.delivery_address
+                  )
+              %td
+                = link_to 'Details', order_path(order), class: 'btn btn-outline-primary', id: "details_#{order.id}"
