@@ -8,7 +8,7 @@ class CartController < ApplicationController
     if current_cart.items.any? { |item| item.product_id == cart_item.product_id }
       flash.now[:warning] = "The #{product.name} is already in the cart"
     else
-      current_cart.items.push(cart_item) unless current_cart.items.any? { |item| item.product_id == cart_item.product_id }
+      current_cart.items.push(cart_item)
       flash.now[:notice] = "The #{product.name} was successfully added to the cart"
     end
     respond_to do |format|
