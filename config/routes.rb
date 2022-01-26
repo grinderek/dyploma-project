@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     delete '/products' => 'products#destroy'
   end
 
-  resources :orders, only: %i[new create]
+  resources :orders, except: %i[edit update]
   resource :cart, controller: 'cart', only: [:show] do
     post 'add_to_cart/:id', to: 'cart#add_to_cart', as: 'add_to'
     post 'update_cart/:id', to: 'cart#update', as: 'update'
