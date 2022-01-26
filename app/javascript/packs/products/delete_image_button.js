@@ -12,6 +12,7 @@ window.$('#file_field').change(() => showButton())
 
 window.$('#delete_button').click(() => {
     $('#file_field').val('')
+    $('#product_delete_image_flag').val(true)
     let elem = document.getElementById('preview_image')
     elem.removeAttribute('src');
     showButton()

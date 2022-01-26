@@ -6,11 +6,8 @@
         .row
           .col
             = f.file_field :image, accept: 'image/jpeg,image/jpg,image/png', id: "file_field"
-            -if @product.image.attached? && @product.image.persisted?
-              = link_to 'Delete image', active_storage_attachment_path(@product.image.id), method: :delete,
-              remote: :true, id: "delete_button", class: "btn btn-outline-light"
-            -else
-              .btn.btn-outline-light{ id: "delete_button"} Delete image
+            = f.hidden_field :delete_image_flag, value: false
+            .btn.btn-outline-light{ id: "delete_button"} Delete image
           .col
             -if @product.image.attached? && @product.image.persisted?
               = image_tag @product.image, class: "img-fluid", id:"preview_image"
