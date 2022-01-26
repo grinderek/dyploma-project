@@ -14,6 +14,8 @@ RSpec.feature 'List of products[User]', type: :feature do
 
   scenario 'After add product show count of products', :js do
     find('#add_1').click
+    expect(page).to have_content("The #{Product.first.name} was successfully added to the cart")
+    find('.navbar-toggler').click
     expect(page).to have_selector('#count_of_products')
   end
 
