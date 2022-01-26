@@ -19,6 +19,7 @@ const showImage = input => {
     if (elem.hasAttribute('src')) elem.removeAttribute('src');
 
     if (input.files && input.files[0] && isImage(input.files[0].name)) {
+        $('#product_delete_image_flag').val(false)
         let reader = new FileReader();
 
         reader.onload = e => $('#preview_image')
