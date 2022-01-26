@@ -6,12 +6,14 @@ class CartController < ApplicationController
     cart_item = SessionCartItem.new(id, 1)
     product = ProductFinder.search(id: id).first
     if current_cart.items.any? { |item| item.product_id == cart_item.product_id }
-      flash[:warning] = "The #{product.name} is already in the cart"
+      flash.now[:warning] = "The #{product.name} is already in the cart"
     else
       current_cart.items.push(cart_item) unless current_cart.items.any? { |item| item.product_id == cart_item.product_id }
-      flash[:notice] = "The #{product.name} was successfully added to the cart"
+      flash.now[:notice] = "The #{product.name} was successfully added to the cart"
     end
-    redirect_to user_product_index_path
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update

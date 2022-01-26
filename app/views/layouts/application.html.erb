@@ -11,9 +11,11 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
+  <%= render 'layouts/navbar' %>
     <div class="container mt-4 mb-4">
-      <%= render 'layouts/messages' %>
+      <div class="flash_wrapper">
+        <%= render 'layouts/messages' %>
+      </div>
       <%= yield %>
     </div>
   </body>

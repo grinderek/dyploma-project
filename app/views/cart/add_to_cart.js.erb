@@ -1,0 +1,2 @@
+$('.flash_wrapper').html("<%= escape_javascript(render 'layouts/messages') %>");
+$("#count_of_products").html("<%= current_cart.items.count %>").removeAttr('hidden');

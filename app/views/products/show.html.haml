@@ -19,8 +19,9 @@
         Delete Product
       = link_to 'Edit Product', edit_product_path(@product), class: 'btn btn-outline-primary'
     - else
-      = button_to 'Add to cart', add_to_cart_path(@product), class: 'btn btn-outline-primary',
-                  id: "add_#{@product.id}"
+      %button.btn.btn-outline-primary{ type: "button", id: "add_#{@product.id}",
+                                                      onclick:"add_to_cart(#{@product.id});" }
+        Add to cart
   %div
     %h3
       Description
