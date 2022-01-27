@@ -16,6 +16,8 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def show; end
+
   def create
     @order = Order.new(checkout_params)
     if @order.save
