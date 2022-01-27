@@ -7,7 +7,7 @@ FactoryBot.define do
     delivery_method { 'Delivery address' }
     delivery_address { Faker::Address.full_address }
     total { 0 }
-    discount { Faker::Number.between(from: 1, to: 100) }
+    discount { Faker::Number.between(from: 0, to: 100) }
 
     after(:create) do |order|
       FactoryBot.create_list(:product, 2).each do |product|
