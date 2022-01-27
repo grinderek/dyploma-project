@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-  before_action :pagination, only: [:index]
-
   PER_PAGE = 10
 
-  def index; end
+  def index
+    max_page = (Order.count / PER_PAGE.to_f).ceil
+    @orders = if params[:page].nil? || params[:page].to_i <= max_page
+      Order.paginate(page: params[:page], per_page: PER_PAGE)
+    else
+      Order.paginate(page: max_page.to_s, per_page: PER_PAGE)
+    end
+  end
 
   def new
     @order = Order.new
@@ -32,15 +37,6 @@ class OrdersController < ApplicationController
   end
 
   private
-
-  def pagination
-    max_page = (Order.count / PER_PAGE.to_f).ceil
-    @orders = if params[:page].nil? || params[:page].to_i <= max_page
-      Order.paginate(page: params[:page], per_page: PER_PAGE)
-    else
-      Order.paginate(page: max_page.to_s, per_page: PER_PAGE)
-    end
-  end
 
   def checkout_params
     params.require(:order).permit(:customer_name, :email, :delivery_method, :delivery_address, :total)
