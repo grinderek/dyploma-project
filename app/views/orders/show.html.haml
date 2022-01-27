@@ -9,9 +9,10 @@
     Total price:
   = number_to_currency(@order.total)
   - if @order.discount != 0
-    (-
-    = @order.discount
-    \% discount)
+    %span{id: "discount_#{@order.id}"}
+      (-
+      = @order.discount
+      \% discount)
 %div
   %span.fw-bold
     Customer name:

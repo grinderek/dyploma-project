@@ -30,6 +30,7 @@ class OrdersController < ApplicationController
       session[:cart] = nil
       redirect_to user_product_index_path
     else
+      @cart = current_cart
       render 'new'
     end
   end
