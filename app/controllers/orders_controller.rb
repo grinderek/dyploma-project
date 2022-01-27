@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(checkout_params)
+    @order.discount = current_cart.discount
     if @order.save
       flash[:notice] = 'Your order is accepted'
       AddProductsToOrderService.new(current_cart, @order.id).add
