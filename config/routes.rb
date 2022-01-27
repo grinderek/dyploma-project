@@ -11,11 +11,12 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: %i[new create]
-  resource :cart, controller: 'cart', only: [:show]
+  resource :cart, controller: 'cart', only: [:show] do
+    post 'add_to_cart/:id', to: 'cart#add_to_cart', as: 'add_to'
+    post 'update_cart/:id', to: 'cart#update', as: 'update'
+    delete 'remove_from_cart/:id', to: 'cart#remove_from_cart', as: 'remove_from'
+  end
   resources :products, only: %i[index show], as: 'user_product'
-  post 'cart/add_to_cart/:id', to: 'cart#add_to_cart', as: 'add_to_cart'
-  post 'cart/update_cart/:id', to: 'cart#update', as: 'update_cart'
-  delete 'cart/remove_from_cart/:id', to: 'cart#remove_from_cart', as: 'remove_from_cart'
   post 'discount', to: 'orders#discount'
 
   scope :active_storage, module: :active_storage, as: :active_storage do

@@ -8,11 +8,12 @@ RSpec.feature 'Checkout[User]', type: :feature do
     @product = Product.last
     visit user_product_path(@product)
     find('#add_11').click
+    expect(page).to have_content("The #{@product.name} was successfully added to the cart")
     @checkout = PromoCode.create(code: 'halyava', percent: 10)
     visit new_order_path
   end
 
-  scenario 'Show product when cart not empty' do
+  scenario 'Show product when cart not empty', :js do
     expect(page).to have_selector('#product_11')
   end
 

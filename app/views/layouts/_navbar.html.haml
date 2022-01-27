@@ -19,6 +19,5 @@
         .d-flex
           = link_to cart_path, class: 'nav-link' do
             %i.fa.fa-shopping-cart
-            - if current_cart.items.count != 0
-              %span{id: "count_of_products"}
-                = current_cart.items.count
+            %span{id: "count_of_products", hidden: current_cart.items.count == 0}
+              = current_cart.items.count

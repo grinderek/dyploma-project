@@ -33,6 +33,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
+      @product.delete_image_if_necessary(params[:product][:delete_image_flag])
       flash[:notice] = 'Product was updated successfully'
       redirect_to product_path(@product)
     else
