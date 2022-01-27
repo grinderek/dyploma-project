@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = OrderFinder.search(id: params[:id]).first
-    @cart_items = OrderProductFinder.search(@order.id)
+    @cart_items = @order.id
   end
 
   def create
