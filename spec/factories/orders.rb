@@ -20,6 +20,7 @@ FactoryBot.define do
         )
         order.total += total_item_price
       end
+      order.total = order.total * (1 - (order.discount / 100.0))
       order.save
     end
   end
