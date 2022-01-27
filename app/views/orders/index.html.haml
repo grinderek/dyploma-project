@@ -28,6 +28,7 @@
               %td{id: "delivery_#{order.id}"}
                 = order.delivery_method
                 - if order.delivery_method == 'Delivery address'
+                  %span{id: "delivery_address_#{order.id}"}
                   (
                   = order.delivery_address
                   )
