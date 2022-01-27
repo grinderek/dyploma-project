@@ -1,8 +1,35 @@
-%span.fw-bold
-  Total price:
-= number_to_currency(@order.total)
-- if @order.discount != 0
-  (-
-  = @order.discount
-  \% discount)
+%h3.text-center.mb-4
+  Information about order
+%div
+  %span.fw-bold
+    ID:
+  = @order.id
+%div
+  %span.fw-bold
+    Total price:
+  = number_to_currency(@order.total)
+  - if @order.discount != 0
+    (-
+    = @order.discount
+    \% discount)
+%div
+  %span.fw-bold
+    Customer name:
+  = @order.customer_name
+%div
+  %span.fw-bold
+    Customer email:
+  = @order.email
+%div
+  %span.fw-bold
+    Delivery method:
+  = @order.delivery_method
+  - if @order.delivery_method == 'Delivery address'
+    %span{id: "delivery_address_#{@order.id}"}
+    (
+    = @order.delivery_address
+    )
+
+%h3.text-center.mt-4
+  Cart of order
 = render 'cart/cart', is_cart_page: false
