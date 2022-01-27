@@ -16,7 +16,10 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
-  def show; end
+  def show
+    @order = OrderFinder.search(id: params[:id]).first
+    @cart_items = OrderProductFinder.search(@order.id)
+  end
 
   def create
     @order = Order.new(checkout_params)
