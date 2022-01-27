@@ -11,9 +11,13 @@ FactoryBot.define do
 
     after(:create) do |order|
       FactoryBot.create_list(:product, 2).each do |product|
-        OrderProduct.create(product_id: product.id, order_id: order.id, quantity: Faker::Number.between(from: 1, to: 5))
-        order.total += product.price *
-          OrderProductFinder.search(product.id, order.id).first.quantity
+        quantity = Faker::Number.between(from: 1, to: 5)
+        total_item_price = product.price * quantity
+        OrderProduct.create(
+          product_id: product.id, order_id: order.id, quantity: quantity,
+          total_item_price: total_item_price,
+        )
+        order.total += total_item_price
         order.save
       end
     end
