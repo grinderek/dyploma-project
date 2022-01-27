@@ -9,7 +9,7 @@ class Product < ApplicationRecord
   validates :price, presence: true, length: { minimum: 1, maximum: 7 }, numericality: true
   validates :description, length: { maximum: 5000 }
 
-  def delete_image(delete_image_flag)
+  def delete_image_if_necessary(delete_image_flag)
     return unless delete_image_flag == 'true' && image.attached?
 
     @attachment = ActiveStorage::Attachment.find(image.id)
