@@ -36,5 +36,7 @@ class CartController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @cart = current_cart
+  end
 end

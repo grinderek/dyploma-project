@@ -14,11 +14,12 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @cart = current_cart
   end
 
   def show
     @order = OrderFinder.search(id: params[:id]).first
-    @cart_items = OrderCart.new(@order)
+    @cart = OrderCart.new(@order)
   end
 
   def create
