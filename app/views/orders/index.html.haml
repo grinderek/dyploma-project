@@ -3,7 +3,7 @@
     %thead
       %tr
         %th
-          ID of order
+          ID
         %th
           Email
         %th
@@ -32,4 +32,7 @@
                   = order.delivery_address
                   )
               %td
-                = link_to 'Details', order_path(order), class: 'btn btn-outline-primary', id: "details_#{order.id}"
+                = link_to 'Details', '#', class: 'btn btn-outline-primary', id: "details_#{order.id}"
+
+.flickr_pagination.mb-4.float-end
+  = will_paginate(@products)
