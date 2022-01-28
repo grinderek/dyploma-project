@@ -11,10 +11,10 @@ class ProductFinder < BaseFinder
   end
 
   def from_id(id)
-    scope.where(id: id)
+    scope.where(id)
   end
 
   def from_deleted(deleted)
-    scope.where(deleted: deleted)
+    scope.where(deleted)
   end
 end
