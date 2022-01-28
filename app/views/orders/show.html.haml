@@ -7,7 +7,7 @@
 %div
   %span.fw-bold
     Total price:
-  = number_to_currency(@order.total)
+  = number_to_currency(@cart.total)
   - if @order.discount != 0
     %span{id: "discount_#{@order.id}"}
       = "(−#{@order.discount}% discount)"
