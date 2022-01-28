@@ -14,6 +14,12 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @cart = current_cart
+  end
+
+  def show
+    @order = OrderFinder.search(id: params[:id]).first
+    @cart = OrderCart.new(@order)
   end
 
   def create
@@ -25,6 +31,7 @@ class OrdersController < ApplicationController
       session[:cart] = nil
       redirect_to user_product_index_path
     else
+      @cart = current_cart
       render 'new'
     end
   end

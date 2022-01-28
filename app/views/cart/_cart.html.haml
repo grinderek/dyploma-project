@@ -18,7 +18,7 @@
           %th
             Actions
         %tbody
-          - current_cart.items.each do |item|
+          - @cart.items.each do |item|
             %tr{id: "product_#{item.product.id}"}
               %td
                 = item.product.name
