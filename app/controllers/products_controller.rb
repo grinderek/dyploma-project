@@ -42,15 +42,22 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @products = ProductFinder.search(id: params[:id])
+    @products = ProductFinder.search(params[:id])
     @products.update_all(deleted: true)
     redirect_to products_path, status: 303
+  end
+
+  def undelete
+    @product = ProductFinder.search(params[:product_id], true).first
+    @product.update(deleted: false)
+    flash[:notice] = "The #{@product.name} no longer marked as deleted"
+    redirect_to products_path
   end
 
   private
 
   def product
-    @product = ProductFinder.search(id: params[:id]).first
+    @product = ProductFinder.search(params[:id]).first
   end
 
   def pagination
@@ -64,6 +71,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :code, :price, :image)
+    params.require(:product).permit(:name, :description, :code, :price, :image, :deleted)
   end
 end
