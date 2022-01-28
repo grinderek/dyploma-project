@@ -9,7 +9,6 @@
       .container
         .justify-content-center
           = bootstrap_form_with model: @order, class: "shadow p-3 mb-3 mt-3 bg-info rounded", local: true do |f|
-            = f.hidden_field :total, value: current_cart.total, id: "form_price"
             = f.text_field :customer_name, placeholder: "Your name"
             = f.text_field :email, placeholder: "e.g. example@gmail.com"
             .row
@@ -33,9 +32,7 @@
               %span{id: "total_price"}
                 = number_to_currency(current_cart.total)
               %div{id: "discount_percent", hidden: current_cart.discount == 0}
-                (-
-                = current_cart.discount
-                \%)
+                = "(-#{current_cart.discount}%)"
             %div{id: "confirm_promo", hidden: current_cart.discount != 0}
               = f.text_field :code, placeholder: "Promo code", label: "Add promo code for discount"
               = f.submit "Confirm", class: "btn btn-outline-light btn-lg", id: "submit_promo_code"

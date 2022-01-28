@@ -5,6 +5,7 @@
         = f.text_field :name, placeholder: "Name of product", id: "product_name_field"
         .row
           .col
+            = f.hidden_field :deleted, value: false
             = f.hidden_field :image, value: f.object.image.signed_id if f.object.image.attached?
             = f.file_field :image, direct_upload: true, accept: 'image/jpeg,image/jpg,image/png', id: "file_field"
             = f.hidden_field :delete_image_flag, value: false

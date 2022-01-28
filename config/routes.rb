@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   resources :orders, only: %i[new create]
   scope '/admin' do
     get '/', to: 'welcome#index'
-    resources :products, except: [:index]
+    resources :products, except: [:index] do
+      post '/undelete', to: 'products#undelete'
+    end
     resources :promo_codes, only: %i[new create]
-    resources :orders, only: %i[index], as: 'admin_orders'
+    resources :orders, only: %i[index show], as: 'admin_orders'
     get '/products', to: 'products#admin_index'
     delete '/products' => 'products#destroy'
   end

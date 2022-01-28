@@ -10,7 +10,11 @@ class AddProductsToOrderService
 
   def add
     @cart.items.each do |item|
-      OrderProduct.create(order_id: @order_id, product_id: item.product_id, quantity: item.quantity)
+      OrderProduct.create(
+        order_id: @order_id, product_id: item.product_id,
+        quantity: item.quantity,
+        total_item_price: item.total_item_price,
+      )
     end
   end
 end

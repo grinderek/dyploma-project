@@ -33,7 +33,7 @@
                   = order.delivery_address
                   )
               %td
-                = link_to 'Details', '#', class: 'btn btn-outline-primary', id: "details_#{order.id}"
+                = link_to 'Details', admin_order_path(order), class: 'btn btn-outline-primary', id: "details_#{order.id}"
 
 .flickr_pagination.mb-4.float-end
   = will_paginate(@products)

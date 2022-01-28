@@ -9,7 +9,7 @@ class SessionCartItem
   end
 
   def product
-    ProductFinder.search(id: @product_id).first
+    ProductFinder.search({ deleted: false }, { id: @product_id }).first
   end
 
   def total_item_price

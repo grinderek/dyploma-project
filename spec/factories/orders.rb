@@ -6,15 +6,17 @@ FactoryBot.define do
     email { Faker::Internet.email }
     delivery_method { 'Delivery address' }
     delivery_address { Faker::Address.full_address }
-    total { 0 }
     discount { Faker::Number.between(from: 1, to: 100) }
 
     after(:create) do |order|
-      FactoryBot.create_list(:product, 2).each do |product|
-        OrderProduct.create(product_id: product.id, order_id: order.id, quantity: Faker::Number.between(from: 1, to: 5))
-        order.total += product.price *
-          OrderProductFinder.search(product.id, order.id).first.quantity
-        order.save
+      count_of_products = Faker::Number.between(from: 1, to: 5)
+      FactoryBot.create_list(:product, count_of_products).each do |product|
+        OrderProduct.create(
+          product_id: product.id,
+          order_id: order.id,
+          quantity: Faker::Number.between(from: 1, to: 5),
+          item_price: product.price,
+        )
       end
     end
   end
