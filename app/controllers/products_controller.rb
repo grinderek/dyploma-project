@@ -54,11 +54,12 @@ class ProductsController < ApplicationController
   end
 
   def pagination
-    max_page = (Product.count / PER_PAGE.to_f).ceil
+    all_products = check_if_admin? ? Product : ProductFinder.search
+    max_page = (all_products.count / PER_PAGE.to_f).ceil
     @products = if params[:page].nil? || params[:page].to_i <= max_page
-      Product.paginate(page: params[:page], per_page: PER_PAGE)
+      all_products.paginate(page: params[:page], per_page: PER_PAGE)
     else
-      Product.paginate(page: max_page.to_s, per_page: PER_PAGE)
+      all_products.paginate(page: max_page.to_s, per_page: PER_PAGE)
     end
   end
 

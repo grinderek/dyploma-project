@@ -14,7 +14,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def new; end
+  def new
+    @order = Order.new
+  end
 
   def show
     @order = OrderFinder.search(id: params[:id]).first
