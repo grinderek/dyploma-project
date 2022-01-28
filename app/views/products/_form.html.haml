@@ -2,7 +2,7 @@
   .row.justify-content-center
     .col-10
       = bootstrap_form_with model: @product, class: "shadow p-3 mb-3 bg-info rounded", local: true do |f|
-        = f.text_field :name, placeholder: "Name of product"
+        = f.text_field :name, placeholder: "Name of product", id: "product_name_field"
         .row
           .col
             = f.hidden_field :image, value: f.object.image.signed_id if f.object.image.attached?
@@ -17,13 +17,13 @@
 
         .row
           .col
-            = f.text_field :code, placeholder: "Vendor code of product"
+            = f.text_field :code, placeholder: "Vendor code of product", id: "code_field"
           .col
-            = f.number_field :price, placeholder: "Price of product", label: "Price(USD)"
-        = f.text_area :description, placeholder: "Description of product", rows: 4
+            = f.number_field :price, placeholder: "Price of product", label: "Price(USD)", id: "price_field"
+        = f.text_area :description, placeholder: "Description of product", rows: 4, id: "description_field"
         %button.btn.btn-outline-light.btn-lg{"data-bs-target" => "#confirmPopup",
           "data-bs-toggle" => "modal", type: "button"}
           Cancel
-        = f.submit class: "btn btn-outline-light btn-lg"
+        = f.submit class: "btn btn-outline-light btn-lg", id: "submit_button"
 
 = render 'modal', page: 'form'
