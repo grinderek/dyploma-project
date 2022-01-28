@@ -27,6 +27,13 @@ RSpec.feature 'List of products[User]', type: :feature do
 
   scenario 'Go to different page' do
     click_link('2', exact: true)
+    expect(page).to_not have_selector('#product_1')
+    expect(page).to have_selector('#product_11')
+  end
+
+  scenario 'If go to page that not exist render last page' do
+    visit '/products?page=3'
+    expect(page).to_not have_selector('#product_1')
     expect(page).to have_selector('#product_11')
   end
 end
