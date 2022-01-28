@@ -13,5 +13,4 @@
   $("#total_price").html("<%= number_to_currency(current_cart.total) %>")
   $("#discount_percent").html("(-<%= current_cart.discount %>%)").attr("hidden", false)
   $("#confirm_promo").attr("hidden", true)
-  $("#form_price").val("<%= current_cart.total %>")
 <% end %>
