@@ -52,6 +52,6 @@ class OrdersController < ApplicationController
   end
 
   def checkout_params
-    params.require(:order).permit(:customer_name, :email, :delivery_method, :delivery_address, :total)
+    params.require(:order).permit(:customer_name, :email, :delivery_method, :delivery_address)
   end
 end
