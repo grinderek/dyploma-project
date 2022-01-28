@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class OrderCart
-  attr_accessor :items
+  attr_accessor :items, :discount
 
   def initialize(order)
     @items = []
-    order.order_products.include(:product).each do |order_product|
+    order.order_products.includes(:product).each do |order_product|
       @items.push(
         OrderCartItem.new(
           order_product.product,
@@ -14,6 +14,7 @@ class OrderCart
         ),
       )
     end
+    @discount = order.discount
   end
 
   def total
