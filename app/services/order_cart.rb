@@ -5,9 +5,18 @@ class OrderCart
 
   def initialize(order)
     @items = []
-    order.products.each do |product|
-      item = OrderProductFinder.search(product.id, order.id).first
-      @items.push(OrderCartItem.new(product, item.quantity, item.total_item_price))
+    order.order_products.include(:product).each do |order_product|
+      @items.push(
+        OrderCartItem.new(
+          order_product.product,
+          order_product.quantity,
+          order_product.total_item_price,
+        ),
+      )
     end
+  end
+
+  def total
+    @items.inject(0) { |sum, item| sum + item.total_item_price } * (1 - (@discount / 100.0))
   end
 end
