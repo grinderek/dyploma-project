@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
     redirect_to products_path, status: 303
   end
 
-  def undelete
+  def undo_deletion
     @product = ProductFinder.search({ deleted: true }, { id: params[:product_id] }).first
     @product.update(deleted: false)
     flash[:notice] = "The #{@product.name} no longer marked as deleted"

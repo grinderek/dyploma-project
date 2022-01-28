@@ -19,7 +19,7 @@
         "data-bs-toggle" => "modal", type: "button"}
           Delete Product
       - else
-        = link_to 'Undelete', product_undelete_path(@product), method: :post, class: 'btn btn-outline-success'
+        = link_to 'Undo deletion', product_undo_deletion_path(@product), method: :post, class: 'btn btn-outline-success'
       = link_to 'Edit Product', edit_product_path(@product), class: 'btn btn-outline-primary'
     - else
       %button.btn.btn-outline-primary{ type: "button", id: "add_#{@product.id}",
