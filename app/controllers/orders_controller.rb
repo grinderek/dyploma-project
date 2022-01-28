@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
+  PER_PAGE = 10
+
+  def index
+    max_page = (Order.count / PER_PAGE.to_f).ceil
+    @orders = if params[:page].nil? || params[:page].to_i <= max_page
+      Order.paginate(page: params[:page], per_page: PER_PAGE)
+    else
+      Order.paginate(page: max_page.to_s, per_page: PER_PAGE)
+    end
+  end
+
   def new
     @order = Order.new
   end
