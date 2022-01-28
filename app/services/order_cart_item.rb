@@ -3,9 +3,13 @@
 class OrderCartItem
   attr_accessor :product, :quantity, :total_item_price
 
-  def initialize(product, quantity, total_item_price)
+  def initialize(product, quantity, item_price)
     @product = product
     @quantity = quantity
-    @total_item_price = total_item_price
+    @item_price = item_price
+  end
+
+  def total_item_price
+    @item_price * @quantity
   end
 end
