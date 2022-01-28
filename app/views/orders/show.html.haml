@@ -10,9 +10,7 @@
   = number_to_currency(@order.total)
   - if @order.discount != 0
     %span{id: "discount_#{@order.id}"}
-      (-
-      = @order.discount
-      \% discount)
+      = "(−#{@order.discount}% discount)"
 %div
   %span.fw-bold
     Customer name:
@@ -27,9 +25,7 @@
   = @order.delivery_method
   - if @order.delivery_method == 'Delivery address'
     %span{id: "delivery_address_#{@order.id}"}
-    (
-    = @order.delivery_address
-    )
+      = "(#{@order.delivery_address})"
 
 %h3.text-center.mt-4
   Cart of order

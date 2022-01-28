@@ -73,6 +73,19 @@ jobs:
       - run:
           name: rspec
           command: bundle exec rake spec
+
+  rubocop:
+    docker:
+      - image: cimg/ruby:3.0.2-browsers
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
       - run:
           name: rubocop
           command: bundle exec rubocop -A
