@@ -9,7 +9,7 @@
     -if @product.image.attached? && @product.image.persisted?
       = image_tag @product.image, class: "img-fluid card-img-top mb-4"
     -else
-      = image_tag 'placeholder.jpg', class: "img-fluid card-img-top mh-100 mb-4"
+      = image_tag 'placeholder.jpg', class: "img-fluid card-img-top mh-100 mb-4", id: "placeholder"
   .col-6
     %h3
       = number_to_currency(@product.price)

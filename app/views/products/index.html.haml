@@ -29,9 +29,9 @@
                 (Deleted)
           %td
             -if product.image.attached? && product.image.persisted?
-              = image_tag product.image, size: "100x100", class: "img-fluid"
+              = image_tag product.image, size: "100x100", class: "img-fluid", id: "image_#{product.id}"
             -else
-              = image_tag 'placeholder.jpg', size: "100x100", class: "img-fluid"
+              = image_tag 'placeholder.jpg', size: "100x100", class: "img-fluid", id: "placeholder_#{product.id}"
           %td
             = product.code
           %td
@@ -44,7 +44,8 @@
               - if check_if_admin?
                 = link_to 'Edit product', edit_product_path(product), class: 'btn btn-outline-warning me-2'
                 - if product.deleted
-                  = button_to 'Undo deletion', product_undo_deletion_path(product), method: :post, class: 'btn btn-outline-success'
+                  = button_to 'Undo deletion', product_undo_deletion_path(product), method: :post,
+                              class: 'btn btn-outline-success', id: "undo_deletion_#{product.id}"
               - else
                 %button.btn.btn-outline-primary{ type: "button", id: "add_#{product.id}",
                                                       onclick:"add_to_cart(#{product.id});" }

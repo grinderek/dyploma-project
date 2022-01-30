@@ -23,7 +23,7 @@
             = f.number_field :price, placeholder: "Price of product", label: "Price(USD)", id: "price_field"
         = f.text_area :description, placeholder: "Description of product", rows: 4, id: "description_field"
         %button.btn.btn-outline-light.btn-lg{"data-bs-target" => "#confirmPopup",
-          "data-bs-toggle" => "modal", type: "button"}
+          "data-bs-toggle" => "modal", type: "button", id: 'cancel_button'}
           Cancel
         = f.submit class: "btn btn-outline-light btn-lg", id: "submit_button"
 
