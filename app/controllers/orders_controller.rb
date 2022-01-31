@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = OrderFinder.search(id: params[:id]).first
-    @cart = @order.order_products
+    @order_products = @order.order_products
   end
 
   def create
@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
   private
 
   def cart
-    @cart = current_cart.items
+    @order_products = current_cart.items
   end
 
   def checkout_params
