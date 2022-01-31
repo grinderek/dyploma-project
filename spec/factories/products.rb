@@ -6,6 +6,7 @@ FactoryBot.define do
     price { Faker::Number.between(from: 1, to: 9_999_999) }
     code { Faker::Alphanumeric.alphanumeric(number: 7) }
     description { Faker::Lorem.paragraph }
+    deleted { false }
 
     after(:build) do |product|
       product.image.attach(

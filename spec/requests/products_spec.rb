@@ -72,9 +72,8 @@ RSpec.describe 'Products', type: :request do
       expect(response.status).to eq 303
     end
 
-    it 'should delete the product' do
-      expect(Product.all.size).to eq 1
-      expect(Product.all.first).to eq @product2
+    it 'should marked product as deleted' do
+      expect(Product.first.deleted).to eq true
     end
   end
 
@@ -86,7 +85,7 @@ RSpec.describe 'Products', type: :request do
       end
       @product = build(:product)
       @product.save
-      get products_path
+      get user_product_index_path
     end
 
     it 'should contain pagination when more count than 10 products' do
@@ -95,7 +94,7 @@ RSpec.describe 'Products', type: :request do
 
     it 'shouldn\'t contain pagination when count less or equal 10 products' do
       delete "/admin/products/#{@product.id}"
-      get products_path
+      get user_product_index_path
       expect(response.body).to_not include 'class="pagination"'
     end
   end

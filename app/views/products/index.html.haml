@@ -20,14 +20,18 @@
         %tr{id: "product_#{product.id}"}
           -if check_if_admin?
             %td
-              = check_box_tag("check_#{product.id}", "check_#{product.id}", false, onClick: "checkOne(this);")
+              - unless product.deleted
+                = check_box_tag("check_#{product.id}", "check_#{product.id}", false, onClick: "checkOne(this);")
           %td
             = product.name
+            - if product.deleted
+              %span.fw-bold
+                (Deleted)
           %td
             -if product.image.attached? && product.image.persisted?
-              = image_tag product.image, size: "100x100", class: "img-fluid"
+              = image_tag product.image, size: "100x100", class: "img-fluid", id: "image_#{product.id}"
             -else
-              = image_tag 'placeholder.jpg', size: "100x100", class: "img-fluid"
+              = image_tag 'placeholder.jpg', size: "100x100", class: "img-fluid", id: "placeholder_#{product.id}"
           %td
             = product.code
           %td
@@ -38,7 +42,10 @@
                 check_if_admin? ? product_path(product) : user_product_path(product),
                 class: 'btn btn-outline-primary me-2'
               - if check_if_admin?
-                = link_to 'Edit product', edit_product_path(product), class: 'btn btn-outline-warning'
+                = link_to 'Edit product', edit_product_path(product), class: 'btn btn-outline-warning me-2'
+                - if product.deleted
+                  = button_to 'Undo deletion', product_undo_deletion_path(product), method: :post,
+                              class: 'btn btn-outline-success', id: "undo_deletion_#{product.id}"
               - else
                 %button.btn.btn-outline-primary{ type: "button", id: "add_#{product.id}",
                                                       onclick:"add_to_cart(#{product.id});" }

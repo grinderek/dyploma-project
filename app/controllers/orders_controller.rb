@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
+  before_action :cart, only: [:new]
+
   PER_PAGE = 10
 
   def index
@@ -14,12 +16,11 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @cart = current_cart
   end
 
   def show
     @order = OrderFinder.search(id: params[:id]).first
-    @cart = OrderCart.new(@order)
+    @order_products = @order.order_products
   end
 
   def create
@@ -31,7 +32,7 @@ class OrdersController < ApplicationController
       session[:cart] = nil
       redirect_to user_product_index_path
     else
-      @cart = current_cart
+      cart
       render 'new'
     end
   end
@@ -46,7 +47,11 @@ class OrdersController < ApplicationController
 
   private
 
+  def cart
+    @order_products = current_cart.items
+  end
+
   def checkout_params
-    params.require(:order).permit(:customer_name, :email, :delivery_method, :delivery_address, :total)
+    params.require(:order).permit(:customer_name, :email, :delivery_method, :delivery_address)
   end
 end
