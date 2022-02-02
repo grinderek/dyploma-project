@@ -14,7 +14,7 @@ class AddProductsToOrderService
         order_id: @order_id,
         product_id: item.product_id,
         quantity: item.quantity,
-        total_item_price: item.total_item_price,
+        item_price: item.product.price,
       )
     end
   end
