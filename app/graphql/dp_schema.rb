@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DPSchema < GraphQL::Schema
+class DpSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
 
