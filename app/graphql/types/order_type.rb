@@ -10,5 +10,8 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :discount, Integer
+
+    field :products, [Types::ProductType], null: false
+    field :order_products, [Types::OrderProductType], null: false
   end
 end

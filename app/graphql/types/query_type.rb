@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class QueryType < Types::BaseObject
     # Add `node(id: ID!) and `nodes(ids: [ID!]!)`
@@ -7,11 +9,16 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: 'An example field added by the generator'
-    def test_field
-      'Hello World!'
+    # /products
+    field :products, [Types::ProductType], null: true
+    def products
+      Product.all
+    end
+
+    # /orders
+    field :orders, [Types::OrderType], null: true
+    def orders
+      Order.all
     end
   end
 end
