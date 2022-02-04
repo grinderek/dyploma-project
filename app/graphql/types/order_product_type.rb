@@ -8,7 +8,8 @@ module Types
     field :quantity, Integer
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
-    field :total_item_price, Integer
     field :item_price, Integer
+
+    field :product, Types::ProductType, null: false
   end
 end
