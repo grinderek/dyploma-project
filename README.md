@@ -16,8 +16,8 @@
 1. The deletion of products is implemented in the project not by a complete deletion from the database, but by adding the boolean field "deleted" to the products. This is done to have information about each product in the already made orders
 2. If admin changes price of products price of these products in the already made orders won't change 
 3. If admin marked product as deleted and this product is in some user's cart - after refreshing the page or going to another page this product will disappear from the cart. Here's the problem: when the user is on the checkout page, admin deletes product that's in the user cart and the user confirms the order - the order will be placed and the user will not know about the missing products, also there is a chance that an empty order will be created. In the near future this will be fixed with WebSockets, I guess:)
-##### Deployed project
-There are two URLs for different roles in this project: [User](https://dyploma-project.herokuapp.com/) and [Admin](https://dyploma-project.herokuapp.com/admin)
+## Deployed project
+The project was deployed on the Heroku. There are two URLs for different roles in this project: [User](https://dyploma-project.herokuapp.com/) and [Admin](https://dyploma-project.herokuapp.com/admin)
 
 ## Run on local machine
 ##### 1. Prerequisites
