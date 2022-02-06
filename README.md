@@ -56,5 +56,5 @@ rails db:create db:migrate db:seed
 rails s
 ```
 
-Now you can use this project on your local machine: for User(http://localhost:3000/) and for Admin(http://localhost:3000/admin/)
+Now you can use this project on your local machine: for [User](http://localhost:3000/) and for [Admin](http://localhost:3000/admin/)
 
